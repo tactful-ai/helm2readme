@@ -5,8 +5,21 @@ from .values import *
 from .requirements import *
 
 def replace_template_parts(template_content, chart_data, requirements_data, chart_folder):
+    """
+    Replaces template parts in the given template content with corresponding values.
 
+    Args:
+        template_content (str): Original template content.
+        chart_data (dict): Data containing information about the chart.
+        requirements_data (dict): Combined requirements data from 'requirements.yaml' and chart data.
+        chart_folder (str): Path to the chart folder.
+
+    Returns:
+        str: Template content with replaced parts.
+    """
+    # Dictionary to hold template patterns and their corresponding replacement values
     replacement_dict: dict[str | Any, str | Any] = {
+        # List of template patterns and their corresponding replacement functions
         '{{ template "chart.header" . }}': get_chart_header(chart_data),
         '{{ template "chart.description" . }}': get_chart_description(chart_data),
         '{{ template "chart.versionBadge" . }}': get_chart_version_badge(chart_data),
@@ -40,6 +53,7 @@ def replace_template_parts(template_content, chart_data, requirements_data, char
         '{{ template "extra.flower" . }}': 'Extra Flower Replacement',
     }
 
+    # Iterate through the replacement dictionary and replace each pattern with its corresponding value
     for pattern, replacement in replacement_dict.items():
         template_content = template_content.replace(pattern, replacement)
 
