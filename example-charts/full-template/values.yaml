@@ -1,0 +1,281 @@
+# -- @custom_css {color: yellow;}
+# -- hello
+  # -- {color: black;}
+controller:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+controller12:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+controller13:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+
+# -- [dstny.hamada.tooto.soso]
+# -- this is so good
+controller11:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+# -- {color:pink;}
+# -- [global.mahmoud] ksjdkjskdjsk
+controller2:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  # -- {background-color:blue;}
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+# -- [global.hello] ksjdkjskdjsk
+controller3:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+# -- [dstny]
+controller4:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+# -- [dstny.hamada.tooto]
+controller5:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+# -- [dstny.hamada]
+controller6:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+
+# -- [global.mahmoud.waer.455454ss.stttopp] ksjdkjskdjsk
+controller7:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+
+# -- [global.mahmoud.waer.king] ksjdkjskdjsk
+controller8:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+
+# -- [global.mahmoud.waer.kok] ksjdkjskdjsk
+controller9:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
+
+
+
+# -- [dstny.hamada.tooto.kiki]
+controller56:
+  name: controller
+  image:
+    repository: nginx-ingress-controller
+    tag: "18.0831"
+
+  # controller.persistentVolumeClaims -- List of persistent volume claims to create.
+  # For very long comments, break them into multiple lines.
+  # @default -- the chart will construct this list internally unless specified
+  persistentVolumeClaims: []
+
+  extraVolumes:
+    - name: config-volume
+      configMap:
+        # controller.extraVolumes[0].configMap.name -- Uses the name of the configmap created by this chart
+        name: nginx-ingress-config
+
+  # controller.ingressClass -- Name of the ingress class to route through this controller
+  ingressClass: nginx
