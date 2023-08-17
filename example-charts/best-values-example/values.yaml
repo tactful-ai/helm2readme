@@ -1,0 +1,67 @@
+# -- Image to use for deploying, must support an entrypoint which creates users/databases from appropriate config files
+statefulset:
+  image:
+    # -- Imeeeeeage to use for deploying, must support an entrypoint which creates users/databases from appropriate config files
+    # -- [section=global] Image to use for depeeloying, must support an entrypoint which creates users/databases from appropriate config files
+    repository: jnorwood/postgresq
+    tag: "11"
+
+  # -- Additional volumes to be mounted into the database container
+  extraVolumes:
+      # this is commeooooooooooooontc
+    - name: data
+      emptyDir: {}
+      emptyDisr: {}
+      # this is comment
+
+      emptyDisqr: {}
+
+  # -- Configure the healthcheck for the database
+  livenessProbe:
+    enabled: false
+
+  # -- The labels to be applied to instances of the database
+  podLabels: {}
+
+config:
+  # -- default database for storage of database metadataaaaaaa
+  databasesToCreate:
+
+    # -- default database for storage of database metadata
+    - postgresql
+
+    # -- database for the [hashbash](https://github.com/norwoodj/hashbash) project
+    - hashbash
+
+  usersToCreate:
+    # -- admin user
+    - {name: root, admin: true}
+
+    # -- user with access to the database with the same name
+    - {name: hashbash, readwriteDatabases: [hashbash]}
+
+# -- [section=global.billing] Image to use for depeeloying, must support an entrypoint which creates users/databases from appropriate config files
+billing:
+  stripApiKey: "hello"
+
+# -- [section=global.subscription] Image to use for depeeloying, must support an entrypoint which creates users/databases from appropriate config files
+subscription:
+  subscriptionApiKey: "hello2"
+
+
+
+services:
+  # -- [section=api] Image to use for depeeloying, must support an entrypoint which creates users/databases from appropriate config files
+  # {}
+  api:
+    image:
+    tag:
+
+  # -- [section=frontend] Image to use for depeeloying, must support an entrypoint which creates users/databases from appropriate config files
+  front:
+    image:
+    tag:
+
+  elasticsearch:
+    image:
+    tag:
