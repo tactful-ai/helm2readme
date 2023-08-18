@@ -1,5 +1,3 @@
-import os.path
-
 from pkg.documents.templates.chart_data import get_chart_data
 from pkg.documents.templates.replacement import replace_template_parts
 from pkg.documents.templates.requirement_data import get_requirements_data
@@ -48,6 +46,7 @@ def testing_chart():
     output_file = "README.md"
     dry_run = False
     process_single_chart(chart_directory, template_files, output_file, dry_run)
+
 
 def main():
     # full_run()

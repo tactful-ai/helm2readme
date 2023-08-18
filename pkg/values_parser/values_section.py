@@ -91,6 +91,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'new_table': False,
                 'custom_css': '',
                 'end_element': True,
+                'is_section': False
             }
         ]
         for index, item in enumerate(value):
@@ -101,6 +102,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'new_table': False,
                 'custom_css': '',
                 'end_element': True,
+                'is_section': False
             })
         return formatted_items
 
@@ -113,6 +115,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'new_table': False,
                 'custom_css': '',
                 'end_element': True,
+                'is_section': False
             }
         ]
         for k, v in value.items():
@@ -130,6 +133,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
             'new_table': False,
             'custom_css': '',
             'end_element': True,
+            'is_section': False
         }
 
 
@@ -199,18 +203,12 @@ def convert_table_to_markdown(table, level=1):
     """
     markdown_content = ""
 
-    intermediate_table = True
+    table_title = table.get('title', '') if not table.get('is_section', False) else level * '-' + '> ' + table.get('title', '')
 
-    # Check if there are intermediate tables (tables within the current table)
-    for table_row in table['value']:
-        if not table_row['new_table']:
-            intermediate_table = False
-            break
-
-    table_title = generate_html_header(level, table['title'])
+    table_title = generate_html_header(level, table_title)
     markdown_content += table_title
 
-    if not intermediate_table:
+    if not table['is_section']:
         # If there are no intermediate tables, add table description and start table formatting
         table_description = formate_description(table['comments'])
         markdown_content += table_description
@@ -224,7 +222,7 @@ def convert_table_to_markdown(table, level=1):
         elif isinstance(row, dict):
             if row['new_table']:
                 # If the row indicates a new nested table, recursively convert it
-                markdown_content += end_table + convert_table_to_markdown(row, level + 1)
+                markdown_content += convert_table_to_markdown(row, level + 1) + end_table
             else:
                 # If it's not a new table, convert the row using convert_key_to_markdown
                 formatted_value = convert_key_to_markdown(row)
@@ -259,37 +257,41 @@ def split_and_merge_tables(values_table, transfers_map):
     transfers_map = sorted(transfers_map, key=lambda x: count_dots(x['transfer']))
 
     for transfer in transfers_map:
-        is_new_table = False
+        is_new_global_table = True
         from_table = transfer['table']
         to_table = transfer['transfer']
 
         # Remove the element from the original values_table based on the from_table path
         target_table = remove_element_by_key(from_table, values_table[0]['value'])
 
+        if target_table is None:
+            print(f"Warning: The table {from_table} is not found or maybe transferd in previous step in the values.yaml file. ")
+            continue
+
         # Search for the target_table within the current values_table and already splitted_tables
         for table in values_table + splitted_tables:
             if to_table.startswith(table['title']):
-                is_new_table = True
-                target_table['title'] = to_table
+                is_new_global_table = False
                 target_table['new_table'] = True
                 target_table['end_element'] = False
                 insert_into_target_table(to_table, target_table, table)
                 break
 
-        if not is_new_table:
+        if is_new_global_table:
             # If the target table isn't found in existing tables, create a new intermediate table
-            target_table['title'] = to_table
+            # important note here when we insert new global table you should be take care of the more depth sections
             target_table['new_table'] = True
             target_table['end_element'] = False
             new_main_dir = {
-                'title': '',
+                'title': to_table.split('.', 1)[0],
                 'comments': [],
                 'value': [],
                 'new_table': False,
                 'custom_css': '',
                 'end_element': False,
+                'is_section': True
             }
-            append_element_to_table(new_main_dir, target_table)
+            append_element_to_table(new_main_dir, target_table, to_table)
             splitted_tables.append(new_main_dir)
 
     # Sort the global and split tables based on the 'new_table' property
@@ -332,9 +334,10 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
             'title': title,
             'comments': title_comments,
             'value': title_value,
-            'new_table': False,
+            'new_table': True,
             'custom_css': '',
             'end_element': False,
+            'is_section': False
         })
 
     # Apply custom CSS to the structured tables
@@ -348,9 +351,10 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
         'new_table': True,
         'custom_css': '',
         'end_element': False,
+        'is_section': True
     }]
 
-    # Split and merge tables based on transfers map
+    # Split and merge tables based on transfer map
     final_tables = split_and_merge_tables(values_table, transfers_map)
 
     markdown_content = ""

@@ -132,12 +132,24 @@ def remove_element_by_key(key, table, level=1):
                 # If the key matches the processed string, search within the nested 'value'
                 return remove_element_by_key(key, row['value'], level + 1)
         elif isinstance(row, list):
+            if row[0].get('title') == key:
+                # Remove the matching element from the table and return it
+                table.remove(row)
+                return {
+                    'title': key,
+                    'comments': [],
+                    'value': row,
+                    'new_table': False,
+                    'custom_css': '',
+                    'end_element': False,
+                    'is_section': False
+                }
+
             for v in row:
-                if isinstance(v, (dict, list)):
-                    # Recursively search within the nested list or dictionary
-                    removed_element = remove_element_by_key(key, v, level + 1)
-                    if removed_element:
-                        return removed_element
+                # Recursively search within the nested list or dictionary
+                removed_element = remove_element_by_key(key, v, level + 1)
+                if removed_element:
+                    return removed_element
     return None
 
 
@@ -164,7 +176,7 @@ def remove_first_occurrence(substring, main_string):
         return main_string
 
 
-def append_element_to_table(table, element):
+def append_element_to_table(table, element, sections):
     """
     Appends an element to a structured table based on its title path.
 
@@ -177,26 +189,34 @@ def append_element_to_table(table, element):
 
     Returns:
         None
+        :param sections:
     """
+
+    if table['title'] == sections:
+        table['value'].append(element)
+        return
+
+
     # Determine the path to the table where the element should be appended
-    table_addition_path = remove_first_occurrence(table['title'], element['title'])
+    table_addition_path = remove_first_occurrence(table['title'], sections)
     table_addition_path = table_addition_path.strip('.')
     table_addition_path = table_addition_path.split('.')
 
     # Initialize the pointer to track the addition path
     final_append = table
-
-    for inner_table in table_addition_path[:-1]:
+    increased_title = table['title']
+    for inner_table in table_addition_path:
         # Create intermediate nested tables along the addition path
         new_dir = {
-            'title': table['title'] + '.' + inner_table,
+            'title': increased_title + '.' + inner_table,
             'comments': '',
             'value': [],
             'new_table': True,
             'custom_css': '',
             'end_element': False,
+            'is_section': True
         }
-
+        increased_title = new_dir['title']
         # Append the new intermediate table and update the pointer
         final_append['value'].append(new_dir)
         final_append = new_dir
@@ -253,7 +273,7 @@ def insert_into_target_table(target_table, element, table, level=1):
                     return inserted_element
 
     # If the target table is not found, append the element using append_element_to_table
-    append_element_to_table(table, element)
+    append_element_to_table(table, element, target_table)
     return None
 
 

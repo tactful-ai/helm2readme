@@ -48,6 +48,7 @@ def extract_closing_tags_or_characters(line):
         str or None: The extracted closing tag or characters, or None if not found.
     """
     line = line.strip()
+    closing_brackets= ''
 
     if line.startswith('<') and '>' in line:
         opening_tag = line.split('>')[0] + '>'
@@ -55,20 +56,17 @@ def extract_closing_tags_or_characters(line):
         closing_tag = f"</{tag_name}>"
         return closing_tag
     else:
-        # Count the number of consecutive opening brackets
-        num_opening_brackets = 0
         for char in line:
-            if char in '[{':
-                num_opening_brackets += 1
+            if char == '[':
+                closing_brackets = ']' + closing_brackets
+            elif char == '{':
+                closing_brackets = '}' + closing_brackets
+            elif char == '(':
+                closing_brackets = ')' + closing_brackets
             else:
                 break
 
-        if num_opening_brackets > 0:
-            closing_brackets = ']' * num_opening_brackets if line.startswith('[') else '}' * num_opening_brackets
-            return closing_brackets
-        else:
-            return None  # Return None if the line doesn't start with a recognized opening tag, bracket, or character
-
+    return closing_brackets
 
 def find_line_with_closing_bracket(current_line, yaml_file, target_closing_bracket):
     """

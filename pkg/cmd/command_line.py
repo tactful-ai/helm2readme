@@ -4,7 +4,7 @@ import argparse
 def parse_command_line_args():
     parser = argparse.ArgumentParser(description="Helm Docs Command Line Tool")
     # Add command-line flags
-    parser.add_argument("-d", "--table-depth", default=1, help="Depth of separate tables to generate")
+    parser.add_argument("-td", "--table-depth", default=1, help="Depth of separate tables to generate")
     parser.add_argument("-c", "--chart-search-root", default=".", help="Directory to search recursively within for charts")
     parser.add_argument("-t", "--template-file", nargs="+", default='README.md.gotmpl', help="Gotemplate file paths relative to each chart directory from which documentation will be generated")
     parser.add_argument("-d", "--dry-run", action="store_true", help="Don't actually render any markdown files, just print to stdout")
