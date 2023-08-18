@@ -264,6 +264,10 @@ def split_and_merge_tables(values_table, transfers_map):
         # Remove the element from the original values_table based on the from_table path
         target_table = remove_element_by_key(from_table, values_table[0]['value'])
 
+        if target_table is None:
+            print(f"Warning: The table {from_table} is not found or maybe transferd in previous step in the values.yaml file. ")
+            continue
+
         # Search for the target_table within the current values_table and already splitted_tables
         for table in values_table + splitted_tables:
             if to_table.startswith(table['title']):

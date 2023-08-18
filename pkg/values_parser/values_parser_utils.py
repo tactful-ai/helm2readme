@@ -132,12 +132,24 @@ def remove_element_by_key(key, table, level=1):
                 # If the key matches the processed string, search within the nested 'value'
                 return remove_element_by_key(key, row['value'], level + 1)
         elif isinstance(row, list):
+            if row[0].get('title') == key:
+                # Remove the matching element from the table and return it
+                table.remove(row)
+                return {
+                    'title': key,
+                    'comments': [],
+                    'value': row,
+                    'new_table': False,
+                    'custom_css': '',
+                    'end_element': False,
+                    'is_section': False
+                }
+
             for v in row:
-                if isinstance(v, (dict, list)):
-                    # Recursively search within the nested list or dictionary
-                    removed_element = remove_element_by_key(key, v, level + 1)
-                    if removed_element:
-                        return removed_element
+                # Recursively search within the nested list or dictionary
+                removed_element = remove_element_by_key(key, v, level + 1)
+                if removed_element:
+                    return removed_element
     return None
 
 

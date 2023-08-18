@@ -63,6 +63,34 @@ A chart for showing every README-element
 
 </table>
 
+<h2>controller19</h2>
+<table style="color: yellow;">
+    <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+<tr style="" ><td>controller19</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td></td></tr><tr style="" ><td>controller19.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller19.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>controller19.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>controller19.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller19.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
+</table>
+
+
+</table>
+
+<h2>services</h2>
+<table style="color: yellow;">
+    <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+<tr style="" ><td>services</td><td>dict</td><td><code>`{'waer': {'controller19': {'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}}}`</code></td><td></td></tr>
+</table>
+
+
+</table>
+
 <h2>--> global.mahmoud</h2><h3>controller2</h3>
 <table style="color: yellow;color:pink;">
     <tr>
@@ -220,6 +248,20 @@ A chart for showing every README-element
 
 </table>
 
+<h3>controller19.image</h3>
+<table style="">
+    <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+<tr style="" ><td>controller19.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller19.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller19.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr>
+</table>
+
+
+</table>
+
 <h3>---> dstny.hamada.tooto</h3><h4>controller5</h4>
 <table style="color: yellow;">
     <tr>
@@ -360,6 +402,23 @@ A chart for showing every README-element
 </table>
 
 
+</table>
+
+
+</table>
+
+
+</table>
+
+<h1>-> nginx-ingress</h1><h2>services.waer</h2>
+<table style="">
+    <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+<tr style="" ><td>services.waer</td><td>dict</td><td><code>`{'controller19': {'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}}`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>services.waer.controller19.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
 </table>
 
 
