@@ -69,7 +69,8 @@ class CommentParser:
         for line in yaml_file:
             if line.strip():
                 current_indentation = count_indentation(line)
-                is_comment = line.lstrip().startswith('# --')
+                is_comment = line.lstrip().startswith('#')
+                is_new_element_in_array = line.strip().startswith('-')
 
                 if current_indentation >= self.previous_indentation and self.is_array and not is_comment:
                     continue
@@ -78,7 +79,7 @@ class CommentParser:
 
                 stripped_line = line.strip()
 
-                if is_comment:
+                if stripped_line.startswith('# --'):
                     self._process_comment(stripped_line)
                 elif stripped_line.startswith('-'):
                     self._process_array()
