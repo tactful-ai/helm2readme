@@ -195,7 +195,7 @@ def generate_html_header(tag_number, text):
     """
     # Validate the tag number
     if tag_number < 1:
-        raise ValueError("Tag number should be between 1 and 6")
+        return f"<h1>{text}</h1>"
 
     # Generate the appropriate HTML tag based on the tag number
     if tag_number > 6:
