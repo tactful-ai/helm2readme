@@ -95,10 +95,13 @@ def get_entry_value(value, prefix, key_to_comment_map):
             }
         ]
         for index, item in enumerate(value):
+            comments = list_comments.get('afterComments', [])[index] if index < len(
+                list_comments.get('afterComments', [])) else []
+
             formatted_items.append({
                 'title': f"{prefix}[{index}]",
                 'value': item,
-                'comments': list_comments['afterComments'][index],
+                'comments': comments,
                 'new_table': False,
                 'custom_css': '',
                 'end_element': True,
@@ -384,6 +387,9 @@ def read_and_print_values(values_path, sort='AlphaNum'):
     """
     # Read data from the YAML file
     values_data = read_yaml_file(values_path)
+
+    if values_data is None:
+        return ''
 
     # Extract top-level entries from the values data
     top_level_entries = extract_top_level_entries(values_data)
