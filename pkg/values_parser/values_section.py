@@ -203,7 +203,7 @@ def convert_table_to_markdown(table, level=1):
     """
     markdown_content = ""
 
-    table_title = table['title'] if not table['is_section'] else level * '-' + '> ' + table['title']
+    table_title = table.get('title', '') if not table.get('is_section', False) else level * '-' + '> ' + table.get('title', '')
 
     table_title = generate_html_header(level, table_title)
     markdown_content += table_title
