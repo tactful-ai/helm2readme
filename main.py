@@ -9,7 +9,7 @@ from pkg.helm.Template import load_readme_template
 from pkg.helm.utils import write_file
 
 
-def process_single_chart(chart_directory, template_files, output_file, dry_run):
+def process_single_chart(chart_directory, template_files):
     readme_template = load_readme_template(chart_directory, template_files)
     # init chart data
     chart_data = get_chart_data(chart_directory)
@@ -17,14 +17,8 @@ def process_single_chart(chart_directory, template_files, output_file, dry_run):
     requirements_data = get_requirements_data(chart_directory, chart_data)
     # replace template parts
     readme_file = replace_template_parts(readme_template, chart_data, requirements_data, chart_directory)
-    # if dry run active just print the readme file
-    if dry_run:
-        print(readme_file)
-    # else write the readme file to the output file
-    else:
-        readme_directory = os.path.join('./', output_file)
-        print(readme_directory)
-        write_file(readme_file, readme_directory)
+
+    return readme_file
 
 
 def full_run():
@@ -42,7 +36,17 @@ def full_run():
     # for each chart directory
     for chart_directory in chart_directories:
         try:
-            process_single_chart(chart_directory, template_file, output_file, dry_run)
+            readMe = process_single_chart(chart_directory, template_file)
+            # if dry run active just print the readme file
+            if dry_run:
+                print(readMe)
+            # else write the readme file to the output file
+            else:
+                readme_directory = os.path.join(chart_directory, output_file)
+                print(readme_directory)
+                write_file(readMe, readme_directory)
+
+
         except Exception as e:
             print("Error in chart directory: " + chart_directory)
             print(e)
@@ -56,8 +60,8 @@ def testing_chart():
 
 
 def main():
-    # full_run()
-    testing_chart()
+    full_run()
+    # testing_chart()
 
 
 if __name__ == "__main__":
