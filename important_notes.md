@@ -75,8 +75,7 @@ controller2:
 
 
 
-- testing
+- testing -> Done
 - documentation
 - github pipeline
 - package the applincatio by byinstaller
-  
