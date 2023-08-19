@@ -1,17 +1,12 @@
 import unittest
 from unittest.mock import patch, Mock
-from pkg.comment_parser.comments_parser import CommentParser
-from pkg.values_parser.values_parser_utils import apply_custom_css, remove_element_by_key, \
-    append_element_to_table, insert_into_target_table, count_dots
 from pkg.helm.utils import read_yaml_file, write_file, count_indentation, get_closing_bracket
-from pkg.comment_parser.comments_parser import CommentParser
 from pkg.values_parser.table_formate.formate_table import formate_description, format_raw, generate_html_header, \
     start_table, end_table
 from pkg.helm.utils import read_yaml_file
-from pkg.values_parser.values_parser_utils import apply_custom_css, remove_element_by_key, append_element_to_table, \
-    insert_into_target_table, count_dots
+from pkg.values_parser.values_parser_utils import apply_custom_css, remove_element_by_key, count_dots
 from pkg.values_parser.values_section import extract_top_level_entries, get_entry_value, convert_key_to_markdown, \
-    convert_table_to_markdown, split_and_merge_tables, generate_markdown_output, read_and_print_values
+    convert_table_to_markdown, split_and_merge_tables
 
 
 class TestCommentsParser(unittest.TestCase):
@@ -94,9 +89,9 @@ class TestValuesParser(unittest.TestCase):
             'example': {'beforeComments': 'This is an example value', 'afterComments': []}
         }
         formatted_value = get_entry_value(value, prefix, comments_map)
-        self.assertEqual(formatted_value['title'], 'example')
-        self.assertEqual(formatted_value['value'], value)
-        self.assertEqual(formatted_value['comments'], comments_map['example']['beforeComments'])
+        self.assertEqual(formatted_value[0]['title'], 'example')
+        self.assertEqual(formatted_value[0]['value'], value)
+        self.assertEqual(formatted_value[0]['comments'], comments_map['example']['beforeComments'])
 
     def test_convert_key_to_markdown_scalar(self):
         row = {
@@ -106,8 +101,8 @@ class TestValuesParser(unittest.TestCase):
             'custom_css': '',
             'end_element': True
         }
-        markdown_content = convert_key_to_markdown(row)
-        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'])
+        markdown_content = convert_key_to_markdown(row, False)
+        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False)
         self.assertEqual(markdown_content, expected_content)
 
     def test_convert_key_to_markdown_list(self):
@@ -164,10 +159,9 @@ class TestValuesParser(unittest.TestCase):
             'new_table': True,
             'is_section': False
         }
-        markdown_content = convert_table_to_markdown(table)
-        expected_content = generate_html_header(1, table['title']) +  formate_description(table['comments']) + start_table(table['custom_css']) + \
-            convert_key_to_markdown(table['value'][0]) + convert_key_to_markdown(table['value'][1])
-
+        markdown_content = convert_table_to_markdown(table,False)
+        expected_content = generate_html_header(1, table['title']) + formate_description(table['comments']) + start_table(table['custom_css']) + \
+            convert_key_to_markdown(table['value'][0], False) + convert_key_to_markdown(table['value'][1], False) + end_table
         self.assertEqual(markdown_content, expected_content)
 
     def test_split_and_merge_tables(self):

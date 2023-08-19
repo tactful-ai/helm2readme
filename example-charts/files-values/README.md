@@ -59,7 +59,7 @@ dataSecret:
 
 
 
-<h1>-> global</h1><h2>config</h2>
+<h1>> global</h1><h1>config</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -70,7 +70,7 @@ dataSecret:
 <tr style="" ><td>config</td><td>dict</td><td><code>`{'databasesToCreate': ['postgresql', 'hashbash'], 'usersToCreate': [{'name': 'root', 'admin': True}, {'name': 'hashbash', 'readwriteDatabases': ['hashbash']}]}`</code></td><td></td></tr><tr style="" ><td>config.databasesToCreate</td><td>list</td><td><code>`['postgresql', 'hashbash']`</code></td><td></td></tr><tr style="" ><td>config.databasesToCreate[0]</td><td>str</td><td><code>`postgresql`</code></td><td><p><code> default database for storage of database metadata</code></p></td></tr><tr style="" ><td>config.databasesToCreate[1]</td><td>str</td><td><code>`hashbash`</code></td><td><p><code> database for the <a href="https://github.com/norwoodj/hashbash">hashbash</a> project</code></p></td></tr><tr style="" ><td>config.usersToCreate</td><td>list</td><td><code>`[{'name': 'root', 'admin': True}, {'name': 'hashbash', 'readwriteDatabases': ['hashbash']}]`</code></td><td></td></tr><tr style="" ><td>config.usersToCreate[0]</td><td>dict</td><td><code>`{'name': 'root', 'admin': True}`</code></td><td><p><code> admin user</code></p></td></tr><tr style="" ><td>config.usersToCreate[1]</td><td>dict</td><td><code>`{'name': 'hashbash', 'readwriteDatabases': ['hashbash']}`</code></td><td><p><code> user with access to the database with the same name</code></p></td></tr>
 </table>
 
-<h2>statefulset</h2>
+<h1>statefulset</h1>
 <table style="">
     <tr>
         <th>Key</th>

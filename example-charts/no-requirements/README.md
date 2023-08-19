@@ -35,7 +35,7 @@ A simple chart that installs, let's say PrometheusRules, that needs no sub-chart
 
 
 
-<h1>-> global</h1><h2>rules</h2>
+<h1>> global</h1><h1>rules</h1>
 <table style="">
     <tr>
         <th>Key</th>
