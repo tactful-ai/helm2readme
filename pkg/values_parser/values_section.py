@@ -224,14 +224,15 @@ def convert_table_to_markdown(table, level=1):
         elif isinstance(row, dict):
             if row['new_table']:
                 # If the row indicates a new nested table, recursively convert it
-                markdown_content += convert_table_to_markdown(row, level + 1) + end_table
+                markdown_content += convert_table_to_markdown(row, level + 1)
             else:
                 # If it's not a new table, convert the row using convert_key_to_markdown
                 formatted_value = convert_key_to_markdown(row)
                 markdown_content += formatted_value
 
-    # Close the current table formatting
-    markdown_content += end_table
+    if not table['is_section']:
+        # Close the current table formatting
+        markdown_content += end_table
 
     return markdown_content
 
