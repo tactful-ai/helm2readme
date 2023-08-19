@@ -5,7 +5,7 @@ name: verify & Upload Python Package
 on:
   push:
     branches:
-      - release
+      - 'release/*'
 
 permissions:
   contents: read
@@ -44,7 +44,7 @@ jobs:
         python -m unittest discover -s ./tests/end-test/ 
 
   publish:
-    needs: build-and-test
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
