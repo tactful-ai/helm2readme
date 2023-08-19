@@ -28,7 +28,7 @@ class CommentParser:
         self.is_array = True
 
     def _process_key(self, stripped_line, current_indentation):
-        current_key = stripped_line.split(':')[0].strip()
+        current_key = stripped_line.split(':')[0].strip().strip("\"").strip("\'")
 
         if current_indentation > self.last_key_indentation[-1]:
             self.prefix_keys.append(current_key)
@@ -61,8 +61,8 @@ class CommentParser:
         for comment in comments_to_remove:
             self.current_comment.remove(comment)
 
-        self.key_to_comment_map[self.full_key] = {'beforeComments': [], 'afterComments': []}
-        self.key_to_comment_map[self.full_key]['beforeComments'] = self.current_comment
+        self.key_to_comment_map[f'{self.full_key}'] = {'beforeComments': [], 'afterComments': []}
+        self.key_to_comment_map[f'{self.full_key}']['beforeComments'] = self.current_comment
         self.current_comment = []
 
     def parse_comment_from_string(self, yaml_file):
@@ -72,6 +72,13 @@ class CommentParser:
                 is_comment = line.lstrip().startswith('#')
                 is_new_element_in_array = line.strip().startswith('-')
 
+                #  this part is used to ignore the lines that are smaller or under the array element
+                # as example:
+                # usersToCreate:
+                # -- admin user
+                # - {name: root,
+                #    admin: true}
+                #     here we should ignore the admin: true} line since is just part of the array
                 if current_indentation >= self.previous_indentation and self.is_array and not is_comment:
                     continue
                 else:

@@ -1,3 +1,5 @@
+import os.path
+
 from pkg.documents.templates.chart_data import get_chart_data
 from pkg.documents.templates.replacement import replace_template_parts
 from pkg.documents.templates.requirement_data import get_requirements_data
@@ -20,7 +22,9 @@ def process_single_chart(chart_directory, template_files, output_file, dry_run):
         print(readme_file)
     # else write the readme file to the output file
     else:
-        write_file(readme_file, './' + output_file)
+        readme_directory = os.path.join(chart_directory, output_file)
+        print(readme_directory)
+        write_file(readme_file, readme_directory)
 
 
 def full_run():
@@ -30,18 +34,21 @@ def full_run():
     (charts_search_root, dry_run, ignore_file, output_file, ignore_non_descriptions,
      sort_values_order, values_file, template_file) = (
         args.chart_search_root, args.dry_run, args.ignore_file, args.output_file, args.ignore_non_descriptions,
-        args.sort_values_order, args.values_file, args.template_files)
+        args.sort_values_order, args.values_file, args.template_file)
 
     # find all chart directories
     chart_directories = find_chart_directories(charts_search_root, ignore_file)
 
     # for each chart directory
     for chart_directory in chart_directories:
-        process_single_chart(chart_directory, template_file, output_file, dry_run)
-
+        try:
+            process_single_chart(chart_directory, template_file, output_file, dry_run)
+        except Exception as e:
+            print("Error in chart directory: " + chart_directory)
+            print(e)
 
 def testing_chart():
-    chart_directory = './example-charts/full-template'
+    chart_directory = r'.\example-charts\no-requirements'
     template_files = 'README.md.gotmpl'
     output_file = "README.md"
     dry_run = False
@@ -49,8 +56,8 @@ def testing_chart():
 
 
 def main():
-    # full_run()
-    testing_chart()
+    full_run()
+    # testing_chart()
 
 
 if __name__ == "__main__":

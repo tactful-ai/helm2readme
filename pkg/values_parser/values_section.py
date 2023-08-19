@@ -81,7 +81,6 @@ def get_entry_value(value, prefix, key_to_comment_map):
         # }
     """
     list_comments = key_to_comment_map[prefix]
-
     if isinstance(value, list):
         formatted_items = [
             {
