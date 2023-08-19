@@ -5,7 +5,7 @@ name: verify & Upload Python Package
 on:
   push:
     branches:
-      - 'release/*'
+      - release
 
 permissions:
   contents: read
