@@ -46,9 +46,6 @@ A chart demonstrating handling of special characters in values files
 <tr style="" ><td>elasticsearch</td><td>dict</td><td><code>`{'clusterHealthCheckParams': 'wait_for_status=yellow&timeout=1s', 'clusterHealthCheckParamsDescription': ''}`</code></td><td></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParams</td><td>str</td><td><code>`wait_for_status=yellow&timeout=1s`</code></td><td></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParamsDescription</td><td>str</td><td><code>``</code></td><td></td></tr>
 </table>
 
-
-</table>
-
 <h2>htmlSnippets</h2>
 <table style="">
     <tr>
@@ -63,12 +60,6 @@ A chart demonstrating handling of special characters in values files
     <h1>Is this right, I don't know html</h1>
   </body>
 </html>`</code></td><td></td></tr><tr style="" ><td>htmlSnippets.two</td><td>str</td><td><code>``</code></td><td></td></tr><tr style="" ><td>htmlSnippets.three</td><td>str</td><td><code>``</code></td><td></td></tr>
-</table>
-
-
-</table>
-
-
 </table>
 
 

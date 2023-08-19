@@ -77,7 +77,7 @@ the definition of the value type here and can be anchored by links with `#string
 We can also create custom type column renderer, where we can assign a tooltip for each type.
 Try this out. Go navigate to [global.adminEmail](#global--adminEmail) value, hover on the value type `string/email`, you will then see
 some tooltip. Clicking the type link will direct you back to it's relevant value type section below.
-w
+
 Other useful case is If the type is a known type, like
 Kubernetes service type, you can anchor the type to redirect user to k8s documentation page to learn more.
 Check the value [persistence.staticDir.accessModes](#persistence--staticDir--accessModes)

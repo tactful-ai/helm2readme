@@ -43,10 +43,7 @@ A chart demonstrating handling of special characters in values files
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>elasticsearch</td><td>dict</td><td><code>`{'clusterHealthCheckParams': 'wait_for_status=yellow&timeout=1s', 'clusterHealthCheckParamsDescription': ''}`</code></td><td></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParams</td><td>str</td><td><code>`wait_for_status=yellow&timeout=1s`</code></td><td><code> The Elasticsearch cluster health status params that will be used by readinessProbe command</code></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParamsDescription</td><td>str</td><td><code>``</code></td><td><code> Now let's put some special characters in the description: wait_for_status=yellow&timeout=1s</code></td></tr>
-</table>
-
-
+<tr style="" ><td>elasticsearch</td><td>dict</td><td><code>`{'clusterHealthCheckParams': 'wait_for_status=yellow&timeout=1s', 'clusterHealthCheckParamsDescription': ''}`</code></td><td></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParams</td><td>str</td><td><code>`wait_for_status=yellow&timeout=1s`</code></td><td><p><code> The Elasticsearch cluster health status params that will be used by readinessProbe command</code></p></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParamsDescription</td><td>str</td><td><code>``</code></td><td><p><code> Now let's put some special characters in the description: wait_for_status=yellow&amp;timeout=1s</code></p></td></tr>
 </table>
 
 <h2>htmlSnippets</h2>
@@ -62,13 +59,7 @@ A chart demonstrating handling of special characters in values files
   <body>
     <h1>Is this right, I don't know html</h1>
   </body>
-</html>`</code></td><td></td></tr><tr style="" ><td>htmlSnippets.two</td><td>str</td><td><code>``</code></td><td><code> Let's put it in the description <html></html></code></td></tr><tr style="" ><td>htmlSnippets.three</td><td>str</td><td><code>``</code></td><td><code> Another description</code></td></tr>
-</table>
-
-
-</table>
-
-
+</html>`</code></td><td></td></tr><tr style="" ><td>htmlSnippets.two</td><td>str</td><td><code>``</code></td><td><p><code> Let's put it in the description <html></html></code></p></td></tr><tr style="" ><td>htmlSnippets.three</td><td>str</td><td><code>``</code></td><td><p><code> Another description</code></p></td></tr>
 </table>
 
 
