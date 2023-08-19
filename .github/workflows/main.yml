@@ -5,11 +5,11 @@ name: doxy-helm
 on:
   push:
     branches:
-      - master
+      - main
       - development
   pull_request:
     branches:
-      - master
+      - main
       - development
 
 permissions:
