@@ -27,7 +27,8 @@ config:
 
   usersToCreate:
     # -- admin user
-    - {name: root, admin: true}
+    - {name: root,
+      admin: true}
 
     # -- user with access to the database with the same name
     - {name: hashbash, readwriteDatabases: [hashbash]}

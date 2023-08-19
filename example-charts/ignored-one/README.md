@@ -1,5 +1,5 @@
 
-# no-values
+# ignored-one
 
 
 
@@ -7,11 +7,11 @@
 
 
 
-A very simple chart that doesn't even need any values for customization
+A demonstration of the ability of a .helmdocsignore file to ignore files by Chart.yaml file
 
 
 
-**Homepage:** <https://github.com/norwoodj/helm-docs/tree/master/example-charts/no-values>
+**Homepage:** <https://github.com/norwoodj/helm-docs/tree/master/example-charts/ignored-one>
 
 
 
@@ -26,7 +26,7 @@ A very simple chart that doesn't even need any values for customization
 
 ## Source Code
 
-* <https://github.com/norwoodj/helm-docs/tree/master/example-charts/no-values>
+* <https://github.com/norwoodj/helm-docs/tree/master/example-charts/ignored-one>
 
 
 
@@ -34,6 +34,9 @@ A very simple chart that doesn't even need any values for customization
 ## Values
 
 
+
+<h1>-> global</h1>
+</table>
 
 
 
