@@ -1,6 +1,8 @@
 import yaml
 import os
 
+from pkg.helm.utils import read_yaml_file
+
 
 def get_requirements_data(chart_yaml_folder, chart_data):
     """
@@ -17,12 +19,12 @@ def get_requirements_data(chart_yaml_folder, chart_data):
 
     if not os.path.exists(requirements_path):
         print(f"Warning: '{requirements_path}' does not exist.")
-        return {}  # Return an empty dictionary if the file doesn't exist
-
-    with open(requirements_path, 'r') as chart_file:
-        requirements_data = yaml.safe_load(chart_file) or {}  # Load requirements data or initialize as empty dictionary
-
-    chart_dependencies = chart_data.get('dependencies', [])  # Extract chart dependencies from chart_data
-    requirements_data['dependencies'] += chart_dependencies  # Add chart dependencies to requirements data
+        chart_dependencies = chart_data.get('dependencies', [])  # Extract chart dependencies from chart_data
+        requirements_data = {'dependencies' : chart_dependencies}  # Add chart dependencies to requirements data
+        return requirements_data
+    else:
+        requirements_data = read_yaml_file(requirements_path)
+        chart_dependencies = chart_data.get('dependencies', [])  # Extract chart dependencies from chart_data
+        requirements_data['dependencies'] = requirements_data['dependencies'] + (chart_dependencies)
 
     return requirements_data
