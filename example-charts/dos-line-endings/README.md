@@ -31,7 +31,7 @@ A chart whose values file has dos line endings rather than unix ones
 
 
 
-<h1>-> global</h1><h2>controller</h2>
+<h1>> global</h1><h1>controller</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -42,7 +42,7 @@ A chart whose values file has dos line endings rather than unix ones
 <tr style="" ><td>controller</td><td>dict</td><td><code>`{'publishService': {'enabled': False}, 'replicas': 2}`</code></td><td></td></tr><tr style="" ><td>controller.publishService</td><td>dict</td><td><code>`{'enabled': False}`</code></td><td></td></tr><tr style="" ><td>controller.publishService.enabled</td><td>bool</td><td><code>`False`</code></td><td><p><code> Whether to expose the ingress controller to the public world sdf</code></p></td></tr><tr style="" ><td>controller.replicas</td><td>int</td><td><code>`2`</code></td><td><p><code> Number of nginx-ingress pods to load balance between sdf.</code></p></td></tr>
 </table>
 
-<h2>livenessProbe</h2>
+<h1>livenessProbe</h1>
 <table style="">
     <tr>
         <th>Key</th>

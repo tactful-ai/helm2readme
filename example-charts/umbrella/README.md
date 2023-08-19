@@ -31,7 +31,7 @@ A chart demonstrating that values documentation from child charts are aggregated
 
 
 
-<h1>-> global</h1><h2>global</h2>
+<h1>> global</h1><h1>global</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -42,7 +42,7 @@ A chart demonstrating that values documentation from child charts are aggregated
 <tr style="" ><td>global</td><td>dict</td><td><code>`{'myGlobalKey': 'my-global-value'}`</code></td><td></td></tr><tr style="" ><td>global.myGlobalKey</td><td>str</td><td><code>`my-global-value`</code></td><td><p><code> A global key</code></p></td></tr>
 </table>
 
-<h2>myParentKey</h2><p><code> A parent key</code></p>
+<h1>myParentKey</h1><p><code> A parent key</code></p>
 <table style="">
     <tr>
         <th>Key</th>

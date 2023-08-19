@@ -35,7 +35,7 @@ A chart demonstrating handling of special characters in values files
 
 
 
-<h1>-> global</h1><h2>elasticsearch</h2>
+<h1>> global</h1><h1>elasticsearch</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -46,7 +46,7 @@ A chart demonstrating handling of special characters in values files
 <tr style="" ><td>elasticsearch</td><td>dict</td><td><code>`{'clusterHealthCheckParams': 'wait_for_status=yellow&timeout=1s', 'clusterHealthCheckParamsDescription': ''}`</code></td><td></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParams</td><td>str</td><td><code>`wait_for_status=yellow&timeout=1s`</code></td><td></td></tr><tr style="" ><td>elasticsearch.clusterHealthCheckParamsDescription</td><td>str</td><td><code>``</code></td><td></td></tr>
 </table>
 
-<h2>htmlSnippets</h2>
+<h1>htmlSnippets</h1>
 <table style="">
     <tr>
         <th>Key</th>

@@ -35,7 +35,7 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
 
 
 
-<h1>-> global</h1><h2>controller</h2>
+<h1>> global</h1><h1>controller</h1>
 <table style="">
     <tr>
         <th>Key</th>

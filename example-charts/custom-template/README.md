@@ -41,7 +41,7 @@ $ helm install my-release foo-bar/custom-template
 
 
 
-<h1>-> global</h1><h2>controller</h2>
+<h1>> global</h1><h1>controller</h1>
 <table style="">
     <tr>
         <th>Key</th>
