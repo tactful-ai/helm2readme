@@ -48,7 +48,7 @@ def full_run():
             print(e)
 
 def testing_chart():
-    chart_directory = r'.\example-charts\custom-value-notation-type'
+    chart_directory = r'.\example-charts\ignored-values-example'
     template_files = 'README.md.gotmpl'
     output_file = "README.md"
     dry_run = False
@@ -56,8 +56,8 @@ def testing_chart():
 
 
 def main():
-    full_run()
-    # testing_chart()
+    # full_run()
+    testing_chart()
 
 
 if __name__ == "__main__":

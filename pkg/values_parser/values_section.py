@@ -128,7 +128,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
 
     else:
         comments = key_to_comment_map[prefix]
-        return {
+        return [{
             'title': prefix,
             'value': value,
             'comments': comments['beforeComments'],
@@ -136,7 +136,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
             'custom_css': '',
             'end_element': True,
             'is_section': False
-        }
+        }]
 
 
 def convert_key_to_markdown(row):

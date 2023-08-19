@@ -76,7 +76,7 @@ def extract_type(value, comments=None):
 
     # Loop through the comments to find type information
     for comment in comments:
-        if '(' in comment and ')' in comment:
+        if comment.startswith(' -- ('):
             # Extract type information enclosed in parentheses
             start = comment.index('(') + 1
             end = comment.index(')', start)

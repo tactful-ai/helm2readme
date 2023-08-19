@@ -1,8 +1,14 @@
 from typing import Any
 
-from chart import *
-from requirements import *
-from values import *
+from pkg.documents.templates.chart import get_chart_sources_list, get_chart_header, get_chart_description, \
+    get_chart_version_badge, get_chart_type_badge, get_chart_app_version_badge, get_chart_deprecation_warning, \
+    get_chart_badges_section, get_chart_homepage_line, get_chart_maintainers_section, get_chart_sources_section, \
+    get_chart_name, get_chart_version, get_chart_type, get_chart_app_version, get_chart_maintainers_header, \
+    get_chart_maintainers_table, get_chart_sources_header, get_chart_homepage, get_chart_kube_version, \
+    get_chart_kube_version_line, get_doxy_helm_version_footer
+from pkg.documents.templates.requirements import get_chart_requirements_section, get_chart_requirements_header, \
+    get_chart_requirements_table
+from pkg.documents.templates.values import get_chart_values_header, get_chart_values_table, get_chart_values_section
 
 
 def replace_template_parts(template_content, chart_data, requirements_data, chart_folder):
