@@ -1,6 +1,8 @@
 
 import os
 
+from pkg.helm.utils import read_yaml_file
+
 
 def return_default_template():
     """
@@ -24,7 +26,7 @@ def return_default_template():
 
 {{ template "chart.valuesSection" . }}
 
-{{ template "helm-docs.versionFooter" . }}
+{{ template "doxy-helm.versionFooter" . }}
     """
     return default_documentation_template
 
@@ -40,10 +42,12 @@ def load_readme_template(folder_path, readme_path):
     Returns:
         str: The contents of the README template as a string.
     """
-    return return_default_template()
+    # return return_default_template()
     readme_template_path = os.path.join(folder_path, readme_path)
     if os.path.exists(readme_template_path):
-        return read_yaml_file(readme_template_path)
+        with open(readme_template_path, 'r') as template_file:
+            readme_template_content = template_file.read()
+        return readme_template_content
     else:
         return return_default_template()
 

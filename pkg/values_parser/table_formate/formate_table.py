@@ -1,4 +1,5 @@
 from pkg.cmd.command_line import get_ignore_non_descriptions
+import markdown
 
 
 def remove_special_chars(value):
@@ -45,7 +46,7 @@ def get_raw_value(value, prefix, value_type, description='', custom_css=""):
 
     # If a description is provided, format it as a <code> HTML element
     if description:
-        description_code = f"<code>{description}</code>"
+        description_code = f"{description}"
     else:
         description_code = ""
 
@@ -76,7 +77,7 @@ def extract_type(value, comments=None):
 
     # Loop through the comments to find type information
     for comment in comments:
-        if '(' in comment and ')' in comment:
+        if comment.startswith(' -- ('):
             # Extract type information enclosed in parentheses
             start = comment.index('(') + 1
             end = comment.index(')', start)
@@ -148,8 +149,14 @@ def formate_description(comments):
     numbered_comments = [f"{i + 1}. {comment}" for i, comment in enumerate(formatted_comments)] if len(
         formatted_comments) > 1 else formatted_comments
 
+    description = "  <br/><br/>".join([f"{comment}" for comment in numbered_comments])
+    if description:
+        description = "<code>" +  description + "</code>"
+
+    markdown_description = markdown.markdown(description)
+
     # Join the formatted comments with line breaks
-    return "  <br/><br/>".join([f"{comment}" for comment in numbered_comments])
+    return markdown_description
 
 
 # Function to format a raw value with description and optional CSS

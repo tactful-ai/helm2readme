@@ -3,8 +3,6 @@ from unittest.mock import patch, Mock
 from pkg.comment_parser.comments_parser import CommentParser
 from pkg.values_parser.values_parser_utils import apply_custom_css, remove_element_by_key, \
     append_element_to_table, insert_into_target_table, count_dots
-from pkg.values_parser.table_formate.formate_table import formate_description, format_raw, generate_html_header, \
-    start_table, end_table
 from pkg.helm.utils import read_yaml_file, write_file, count_indentation, get_closing_bracket
 from pkg.comment_parser.comments_parser import CommentParser
 from pkg.values_parser.table_formate.formate_table import formate_description, format_raw, generate_html_header, \
@@ -168,7 +166,7 @@ class TestValuesParser(unittest.TestCase):
         }
         markdown_content = convert_table_to_markdown(table)
         expected_content = generate_html_header(1, table['title']) +  formate_description(table['comments']) + start_table(table['custom_css']) + \
-            convert_key_to_markdown(table['value'][0]) + convert_key_to_markdown(table['value'][1]) + end_table
+            convert_key_to_markdown(table['value'][0]) + convert_key_to_markdown(table['value'][1])
 
         self.assertEqual(markdown_content, expected_content)
 

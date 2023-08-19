@@ -81,7 +81,6 @@ def get_entry_value(value, prefix, key_to_comment_map):
         # }
     """
     list_comments = key_to_comment_map[prefix]
-
     if isinstance(value, list):
         formatted_items = [
             {
@@ -95,10 +94,13 @@ def get_entry_value(value, prefix, key_to_comment_map):
             }
         ]
         for index, item in enumerate(value):
+            comments = list_comments.get('afterComments', [])[index] if index < len(
+                list_comments.get('afterComments', [])) else []
+
             formatted_items.append({
                 'title': f"{prefix}[{index}]",
                 'value': item,
-                'comments': list_comments['afterComments'][index],
+                'comments': comments,
                 'new_table': False,
                 'custom_css': '',
                 'end_element': True,
@@ -126,7 +128,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
 
     else:
         comments = key_to_comment_map[prefix]
-        return {
+        return [{
             'title': prefix,
             'value': value,
             'comments': comments['beforeComments'],
@@ -134,7 +136,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
             'custom_css': '',
             'end_element': True,
             'is_section': False
-        }
+        }]
 
 
 def convert_key_to_markdown(row):
@@ -222,14 +224,15 @@ def convert_table_to_markdown(table, level=1):
         elif isinstance(row, dict):
             if row['new_table']:
                 # If the row indicates a new nested table, recursively convert it
-                markdown_content += convert_table_to_markdown(row, level + 1) + end_table
+                markdown_content += convert_table_to_markdown(row, level + 1)
             else:
                 # If it's not a new table, convert the row using convert_key_to_markdown
                 formatted_value = convert_key_to_markdown(row)
                 markdown_content += formatted_value
 
-    # Close the current table formatting
-    markdown_content += end_table
+    if not table['is_section']:
+        # Close the current table formatting
+        markdown_content += end_table
 
     return markdown_content
 
@@ -384,6 +387,9 @@ def read_and_print_values(values_path, sort='AlphaNum'):
     """
     # Read data from the YAML file
     values_data = read_yaml_file(values_path)
+
+    if values_data is None:
+        return ''
 
     # Extract top-level entries from the values data
     top_level_entries = extract_top_level_entries(values_data)

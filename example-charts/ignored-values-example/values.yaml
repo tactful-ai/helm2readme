@@ -23,11 +23,13 @@ config:
     - postgresql
 
     # -- database for the [hashbash](https://github.com/norwoodj/hashbash) project
+    # -- database for the [hashbash](https://github.com/norwoodj/hashbash) project
     - hashbash
 
   usersToCreate:
     # -- admin user
-    - {name: root, admin: true}
+    - {name: root,
+      admin: true}
 
     # -- user with access to the database with the same name
     - {name: hashbash, readwriteDatabases: [hashbash]}
