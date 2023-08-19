@@ -48,7 +48,7 @@ def full_run():
             print(e)
 
 def testing_chart():
-    chart_directory = r'.\example-charts\no-requirements'
+    chart_directory = r'.\example-charts\custom-value-notation-type'
     template_files = 'README.md.gotmpl'
     output_file = "README.md"
     dry_run = False

@@ -1,5 +1,8 @@
-
 # django
+
+
+
+> **:exclamation: This Helm Chart is deprecated!**
 
 
 
@@ -31,224 +34,160 @@ Generic chart for basic Django-based web app
 
 
 
-## Values
+## Requirements
+
+ | Repository | Name | Version |
+|------------|------|---------|
+| @stable | nginx-ingress | 0.22.1 |
+| file://../../postgis/v0.2.1 | postgis | 0.2.1 |
+| file://../../common/v1.0.0 | common | 1.0.0 |
 
 
 
-<h1>-> global</h1><h2>extraConfigMap</h2> (tpl/dict) Define this for extra config map to be included in django-shared-config
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
 
+# Some Long Description
+
+This is a sample README with custom overrides.
+Check the template in [README.md.gotmpl](README.md.gotmpl).
+
+In that file, we redefine the template definition of `chart.valueDefaultColumnRender`
+for some custom `@notationType` such as `string/email`.
+
+This chart README uses `chart.valuesSectionHtml` instead of `chart.valuesSection`.
+Using HTML table directly instead of using Markdown table allows us to control the table
+presentation, such as the height. This is especially useful for very long `values.yaml` file,
+and you need to scroll both horizontally and vertically to navigate the values.
+
+In the template file, we redefine `chart.valuesTableHtml` so that we use table height of
+400px at most. Github can understand that attribute. The more sophisticated use case is if you
+want to combine helm-docs with a Jamstack static generator where you can have your own page generated
+from this README.
+
+The customization can goes even further. Normally, you can't define anchor in markdown unless it is a heading. But you can do so easily using HTML tags.
+You can override the column key renderer by adding an `id` attribute so that it can be referred.
+This way, when you write markdown links like [ingress.tls.secretName](#ingress--tls--secretName), clicking the link
+will take you to the value description row.
+
+## Value Types
+
+One of the benefit of using HTML table is we can make a simple tooltip and anchor.
+For example, the value [global.adminEmail](#global--adminEmail) is annotated as type `string/email`. We create
+the definition of the value type here and can be anchored by links with `#stringemail` hyperlinks.
+
+We can also create custom type column renderer, where we can assign a tooltip for each type.
+Try this out. Go navigate to [global.adminEmail](#global--adminEmail) value, hover on the value type `string/email`, you will then see
+some tooltip. Clicking the type link will direct you back to it's relevant value type section below.
+w
+Other useful case is If the type is a known type, like
+Kubernetes service type, you can anchor the type to redirect user to k8s documentation page to learn more.
+Check the value [persistence.staticDir.accessModes](#persistence--staticDir--accessModes)
+
+### string/email
+
+{{- define "chart.valuetypes.email" }}
+This value type is for a valid email address format. Such as owner@somedomain.org.
+{{- end }}
+{{ template "chart.valuetypes.email" . }}
+
+## Notation Type
+
+Another reason to use HTML table is because in some cases we want to custom-render the default value.
+
+In helm chart templates, sometimes author designs the template to accept a go template string value.
+That means, the template string can be processed by helm chart and be replaced with dynamic computed values, before it was
+rendered to the chart. Although it is very useful and flexible to make the default value be dynamic,
+it is not entirely obvious for the chart users to see a go template as value in a `values.yml`.
+It would then be helpful to custom-render these default values in the helm README, so that it is not
+treated as a pure JSON object (because the syntax highlighter would be incorrect).
+Instead we can custom render the presentation so it would make sense to the user.
+
+In our example here, any key with a type `tpl/xxx` would be rendered as `<pre></pre>`
+HTML tag, in which we both put the key name and the YAML multiline modifier `|` to make
+it really clear that the key accept a multiline string as value, because it would be rendered as
+YAML object by helm after the values are interpolated/substituted.
+
+Take a look at [extraPodEnv](#extraPodEnv). The `Default` column shows the key name `extraPodEnv`, the multiline YAML
+modifier `|`, and the template string which contains some go string template syntax `{{"{{ }}"}}`.
+
+You can also control the HTML styling directly. In some markdown viewer, the HTML tag and inline styles
+are respected, so the custom styles can be seen. Combined with a Jamstack approach, you can
+design your template to also incorporate some custom React styles or simple CSS.
+
+In our example here, [global.adminEmail](#global--adminEmail) is annotated with `email` notationType.
+This allows you to insert custom rendering code for email. For supported markdown viewer, like Visual Studio Code,
+the default value will have `green` color, and if clicked will direct you to your default email composer.
+
+The reason we have two separate annotation, value type and notation type, is because several different types
+can have the same type renderer. For example, any type `tpl/xxx` is a go template string, so it will be rendered the same
+in our docs if we annotate it with `@notationType -- tpl`.
+
+## Customized Rendering
+
+This README also shows some possible customization with doxy-helm. In the [README.md.gotmpl](README.md.gotmpl)
+file, you can see that we modified the column `Key` to also be hyperlinked with the definition in `values.yaml`.
+If you view this README.md files in GitHub and click the value's key, you will be directed to the
+key location in the `values.yaml` file.
+
+You can also render a raw string into the comments using `@raw` annotations.
+You can jump to [sampleYaml](#sampleYaml) key and check it's description where it
+uses HTML `<summary>` tag to collapse some part of the comments.
+
+{{ define "chart.valueDefaultColumnRender" }}
+{{- $defaultValue := (default .Default .AutoDefault)  -}}
+{{- $notationType := .NotationType }}
+{{- if (and (hasPrefix "`" $defaultValue) (hasSuffix "`" $defaultValue) ) -}}
+{{- $defaultValue = (toPrettyJson (fromJson (trimAll "`" (default .Default .AutoDefault) ) ) ) -}}
+{{- $notationType = "json" }}
+{{- end -}}
+{{- if (eq $notationType "tpl" ) }}
+<pre lang="{{ $notationType }}">
+{{ .Key }}: |
+{{- $defaultValue | nindent 2 }}
+</pre>
+{{- else if (eq $notationType "email") }}
+<a href="mailto:{{ $defaultValue }}" style="color: green;">"{{ $defaultValue }}"</a>
+{{- else }}
+<pre lang="{{ $notationType }}">
+{{ $defaultValue }}
+</pre>
+{{- end }}
+{{ end }}
+
+{{ define "chart.typeColumnRender" }}
+{{- if (eq .Type "string/email") }}
+<a href="#stringemail" title="{{- template "chart.valuetypes.email" -}}">{{.Type}}</a>
+{{- else if (eq .Type "k8s/storage/persistent-volume/access-modes" )}}
+<a target="_blank"
+   href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes"
+   >{{- .Type }}</a>
+{{- else }}
+{{ .Type }}
+{{- end }}
+{{ end }}
+
+{{ define "chart.valuesTableHtml" }}
+<table height="400px" >
+	<thead>
+		<th>Key</th>
+		<th>Type</th>
+		<th>Default</th>
+		<th>Description</th>
+	</thead>
+	<tbody>
+	{{- range .Values }}
+		<tr>
+			<td id="{{ .Key | replace "." "--" }}"><a href="./values.yaml#L{{ .LineNumber }}">{{ .Key }}</a></td>
+			<td>{{- template "chart.typeColumnRender" . -}}</td>
+			<td>
+				<div style="max-width: 300px;">{{ template "chart.valueDefaultColumnRender" . }}</div>
+			</td>
+			<td>{{ if .Description }}{{ .Description }}{{ else }}{{ .AutoDescription }}{{ end }}</td>
+		</tr>
+	{{- end }}
+	</tbody>
 </table>
+{{ end }}
 
-
-</table>
-
-<h2>extraPodEnv</h2> (tpl/array) Define this for extra Django environment variables
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-
-</table>
-
-
-</table>
-
-<h2>extraPodSpec</h2> (tpl/object) This will be evaluated as pod spec
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-
-</table>
-
-
-</table>
-
-<h2>extraSecret</h2> (tpl/dict) Define this for extra secrets to be included in django-shared-secret secret
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-
-</table>
-
-
-</table>
-
-<h2>extraVolume</h2> (tpl/array) Define this for extra volume (in pair with extraVolumeMounts)
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-
-</table>
-
-
-</table>
-
-<h2>extraVolumeMounts</h2> (tpl/array) Define this for extra volume mounts in the pod
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-
-</table>
-
-
-</table>
-
-<h2>global</h2> This key name is used for service interconnection between subcharts and parent charts.
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>global</td><td>dict</td><td><code>`{'nameOverride': 'django', 'existingSecret': '', 'sharedSecretName': 'django-shared-secret', 'siteName': 'django', 'djangoCommand': '["/opt/django/scripts/docker-entrypoint.sh"]', 'djangoArgs': '["uwsgi","--chdir=${REPO_ROOT}","--module=${MAIN_APP_NAME}.wsgi","--socket=:8000","--http=0.0.0.0:8080","--processes=5","--buffer-size=8192"]', 'adminUser': 'admin', 'adminPassword': {'value': None, 'valueFrom': {'secretKeyRef': {'name': None, 'key': 'admin-password'}}}, 'adminEmail': 'admin@localhost', 'djangoSecretKey': {'value': None, 'valueFrom': {'secretKeyRef': {'name': None, 'key': 'django-secret'}}}, 'databaseUsername': 'django_db_user', 'databasePassword': {'value': None, 'valueFrom': {'secretKeyRef': {'name': None, 'key': 'database-password'}}}, 'databaseName': 'django', 'databaseHost': 'postgis', 'databasePort': 5432, 'debug': 'False', 'mainAppName': 'django', 'djangoSettingsModule': 'django.settings', 'rootURLConf': 'django.urls', 'staticRoot': '/opt/django/static', 'mediaRoot': '/opt/django/media'}`</code></td><td><code> This key name is used for service interconnection between subcharts and parent charts.</code></td></tr><tr style="" ><td>global.nameOverride</td><td>str</td><td><code>`django`</code></td><td></td></tr><tr style="" ><td>global.existingSecret</td><td>tpl/string</td><td><code>``</code></td><td><code> (tpl/string) Name of existing secret</code></td></tr><tr style="" ><td>global.sharedSecretName</td><td>string</td><td><code>`django-shared-secret`</code></td><td><code> (string) Name of shared secret store that will be generated</code></td></tr><tr style="" ><td>global.siteName</td><td>string</td><td><code>`django`</code></td><td><code> (string) The site name. It will be used to construct url such as http://django/</code></td></tr><tr style="" ><td>global.djangoCommand</td><td>tpl/array</td><td><code>`["/opt/django/scripts/docker-entrypoint.sh"]`</code></td><td><code> (tpl/array) The django entrypoint command to execute</code></td></tr><tr style="" ><td>global.djangoArgs</td><td>tpl/array</td><td><code>`["uwsgi","--chdir=${REPO_ROOT}","--module=${MAIN_APP_NAME}.wsgi","--socket=:8000","--http=0.0.0.0:8080","--processes=5","--buffer-size=8192"]`</code></td><td><code> (tpl/array) The django command args to be passed to entrypoint command</code></td></tr><tr style="" ><td>global.adminUser</td><td>string</td><td><code>`admin`</code></td><td><code> (string) Default super user admin username</code></td></tr><tr style="" ><td>global.adminPassword</td><td>dict</td><td><code>`{'value': None, 'valueFrom': {'secretKeyRef': {'name': None, 'key': 'admin-password'}}}`</code></td><td></td></tr><tr style="" ><td>global.adminPassword.value</td><td>string</td><td><code>`None`</code></td><td><code> (string) Specify this password value. If not, it will be autogenerated everytime chart upgraded</code></td></tr><tr style="" ><td>global.adminPassword.valueFrom</td><td>dict</td><td><code>`{'secretKeyRef': {'name': None, 'key': 'admin-password'}}`</code></td><td></td></tr><tr style="" ><td>global.adminPassword.valueFrom.secretKeyRef</td><td>dict</td><td><code>`{'name': None, 'key': 'admin-password'}`</code></td><td></td></tr><tr style="" ><td>global.adminPassword.valueFrom.secretKeyRef.name</td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>global.adminPassword.valueFrom.secretKeyRef.key</td><td>str</td><td><code>`admin-password`</code></td><td></td></tr><tr style="" ><td>global.adminEmail</td><td>string/email</td><td><code>`admin@localhost`</code></td><td><code> (string/email) Default admin email sender</code></td></tr><tr style="" ><td>global.djangoSecretKey</td><td>dict</td><td><code>`{'value': None, 'valueFrom': {'secretKeyRef': {'name': None, 'key': 'django-secret'}}}`</code></td><td></td></tr><tr style="" ><td>global.djangoSecretKey.value</td><td>string</td><td><code>`None`</code></td><td><code> (string) Specify this Django Secret string value. If not, it will be autogenerated everytime chart upgraded</code></td></tr><tr style="" ><td>global.djangoSecretKey.valueFrom</td><td>dict</td><td><code>`{'secretKeyRef': {'name': None, 'key': 'django-secret'}}`</code></td><td></td></tr><tr style="" ><td>global.djangoSecretKey.valueFrom.secretKeyRef</td><td>dict</td><td><code>`{'name': None, 'key': 'django-secret'}`</code></td><td></td></tr><tr style="" ><td>global.djangoSecretKey.valueFrom.secretKeyRef.name</td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>global.djangoSecretKey.valueFrom.secretKeyRef.key</td><td>str</td><td><code>`django-secret`</code></td><td></td></tr><tr style="" ><td>global.databaseUsername</td><td>string</td><td><code>`django_db_user`</code></td><td><code> (string) Database username backend to connect to. If you use external backend, provide the value</code></td></tr><tr style="" ><td>global.databasePassword</td><td>dict</td><td><code>`{'value': None, 'valueFrom': {'secretKeyRef': {'name': None, 'key': 'database-password'}}}`</code></td><td></td></tr><tr style="" ><td>global.databasePassword.value</td><td>string</td><td><code>`None`</code></td><td><code> (string) Specify this password value. If not, it will be autogenerated everytime chart upgraded. If you use external backend, you must provide the value</code></td></tr><tr style="" ><td>global.databasePassword.valueFrom</td><td>dict</td><td><code>`{'secretKeyRef': {'name': None, 'key': 'database-password'}}`</code></td><td></td></tr><tr style="" ><td>global.databasePassword.valueFrom.secretKeyRef</td><td>dict</td><td><code>`{'name': None, 'key': 'database-password'}`</code></td><td></td></tr><tr style="" ><td>global.databasePassword.valueFrom.secretKeyRef.name</td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>global.databasePassword.valueFrom.secretKeyRef.key</td><td>str</td><td><code>`database-password`</code></td><td></td></tr><tr style="" ><td>global.databaseName</td><td>string</td><td><code>`django`</code></td><td><code> (string) Django database name</code></td></tr><tr style="" ><td>global.databaseHost</td><td>string</td><td><code>`postgis`</code></td><td><code> (string) Django database host location. By default this chart can generate standard postgres chart. So you can leave it as default. If you use external backend,  you must provide the value</code></td></tr><tr style="" ><td>global.databasePort</td><td>int</td><td><code>`5432`</code></td><td><code> (int) Django database port. By default this chart can generate standard postgres chart. So you can leave it as default. If you use external backend,  you must provide the value</code></td></tr><tr style="" ><td>global.debug</td><td>string</td><td><code>`False`</code></td><td><code> (string) Python boolean literal, this will correspond to `DEBUG` environment variable inside the Django container. Useful as a debug switch.</code></td></tr><tr style="" ><td>global.mainAppName</td><td>string</td><td><code>`django`</code></td><td><code> (string) The main app name to execute. Affects which settings, wsgi, and rootURL to use.</code></td></tr><tr style="" ><td>global.djangoSettingsModule</td><td>string</td><td><code>`django.settings`</code></td><td><code> (string) Django settings module to be used</code></td></tr><tr style="" ><td>global.rootURLConf</td><td>string</td><td><code>`django.urls`</code></td><td><code> (string) Django root URL conf to be used</code></td></tr><tr style="" ><td>global.staticRoot</td><td>path</td><td><code>`/opt/django/static`</code></td><td><code> (path) Location to the static directory</code></td></tr><tr style="" ><td>global.mediaRoot</td><td>path</td><td><code>`/opt/django/media`</code></td><td><code> (path) Location to the media directory</code></td></tr>
-</table>
-
-
-</table>
-
-<h2>image</h2> Image map
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>image</td><td>dict</td><td><code>`{'registry': 'docker.io', 'repository': 'lucernae/django-sample', 'tag': '3.1', 'pullPolicy': 'IfNotPresent'}`</code></td><td><code> Image map</code></td></tr><tr style="" ><td>image.registry</td><td>str</td><td><code>`docker.io`</code></td><td><code> Image registry</code></td></tr><tr style="" ><td>image.repository</td><td>str</td><td><code>`lucernae/django-sample`</code></td><td><code> Image repository</code></td></tr><tr style="" ><td>image.tag</td><td>str</td><td><code>`3.1`</code></td><td><code> Image tag</code></td></tr><tr style="" ><td>image.pullPolicy</td><td>str</td><td><code>`IfNotPresent`</code></td><td><code> Image pullPolicy</code></td></tr>
-</table>
-
-
-</table>
-
-<h2>ingress</h2>
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>ingress</td><td>dict</td><td><code>`{'enabled': False, 'host': '', 'annotations': {}, 'labels': {}, 'tls': {'enabled': False, 'secretName': 'django-tls'}}`</code></td><td></td></tr><tr style="" ><td>ingress.enabled</td><td>bool</td><td><code>`False`</code></td><td><code> (bool) Set to true to generate Ingress resource</code></td></tr><tr style="" ><td>ingress.host</td><td>tpl/string</td><td><code>``</code></td><td><code> (tpl/string) Set custom host name. (DNS name convention)</code></td></tr><tr style="" ><td>ingress.annotations</td><td>dict</td><td><code>`{}`</code></td><td><code> (dict) Custom Ingress annotations</code></td></tr><tr style="" ><td>ingress.labels</td><td>dict</td><td><code>`{}`</code></td><td><code> (dict) Custom Ingress labels</code></td></tr><tr style="" ><td>ingress.tls</td><td>dict</td><td><code>`{'enabled': False, 'secretName': 'django-tls'}`</code></td><td></td></tr><tr style="" ><td>ingress.tls.enabled</td><td>bool</td><td><code>`False`</code></td><td><code> (bool) Set to true to enable HTTPS</code></td></tr><tr style="" ><td>ingress.tls.secretName</td><td>string</td><td><code>`django-tls`</code></td><td><code> (string) You must provide a secret name where the TLS cert is stored</code></td></tr>
-</table>
-
-
-</table>
-
-<h2>labels</h2> (map) The deployment label
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>labels</td><td>map</td><td><code>`{'user/workload': 'true', 'client-name': 'my-boss', 'project-name': 'awesome-project'}`</code></td><td><code> (map) The deployment label</code></td></tr><tr style="" ><td>labels.user/workload</td><td>str</td><td><code>`true`</code></td><td></td></tr><tr style="" ><td>labels.client-name</td><td>str</td><td><code>`my-boss`</code></td><td></td></tr><tr style="" ><td>labels.project-name</td><td>str</td><td><code>`awesome-project`</code></td><td></td></tr>
-</table>
-
-
-</table>
-
-<h2>persistence</h2>
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>persistence</td><td>dict</td><td><code>`{'staticDir': {'enabled': True, 'existingClaim': False, 'mountPath': '/opt/django/static', 'subPath': 'static', 'size': '8Gi', 'accessModes': ['ReadWriteOnce'], 'annotations': {}}, 'mediaDir': {'enabled': True, 'existingClaim': False, 'mountPath': '/opt/django/media', 'subPath': 'media', 'size': '8Gi', 'accessModes': ['ReadWriteOnce'], 'annotations': {}}}`</code></td><td></td></tr><tr style="" ><td>persistence.staticDir</td><td>dict</td><td><code>`{'enabled': True, 'existingClaim': False, 'mountPath': '/opt/django/static', 'subPath': 'static', 'size': '8Gi', 'accessModes': ['ReadWriteOnce'], 'annotations': {}}`</code></td><td></td></tr><tr style="" ><td>persistence.staticDir.enabled</td><td>bool</td><td><code>`True`</code></td><td><code> (bool) Allow persistence</code></td></tr><tr style="" ><td>persistence.staticDir.existingClaim</td><td>bool</td><td><code>`False`</code></td><td></td></tr><tr style="" ><td>persistence.staticDir.mountPath</td><td>str</td><td><code>`/opt/django/static`</code></td><td></td></tr><tr style="" ><td>persistence.staticDir.subPath</td><td>str</td><td><code>`static`</code></td><td></td></tr><tr style="" ><td>persistence.staticDir.size</td><td>str</td><td><code>`8Gi`</code></td><td></td></tr><tr style="" ><td>persistence.staticDir.accessModes</td><td>k8s/storage/persistent-volume/access-modes</td><td><code>`['ReadWriteOnce']`</code></td><td><code> (k8s/storage/persistent-volume/access-modes) Static Dir access modes</code></td></tr><tr style="" ><td>persistence.staticDir.accessModes[0]</td><td>str</td><td><code>`ReadWriteOnce`</code></td><td></td></tr><tr style="" ><td>persistence.staticDir.annotations</td><td>dict</td><td><code>`{}`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir</td><td>dict</td><td><code>`{'enabled': True, 'existingClaim': False, 'mountPath': '/opt/django/media', 'subPath': 'media', 'size': '8Gi', 'accessModes': ['ReadWriteOnce'], 'annotations': {}}`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir.enabled</td><td>bool</td><td><code>`True`</code></td><td><code> (bool) Allow persistence</code></td></tr><tr style="" ><td>persistence.mediaDir.existingClaim</td><td>bool</td><td><code>`False`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir.mountPath</td><td>str</td><td><code>`/opt/django/media`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir.subPath</td><td>str</td><td><code>`media`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir.size</td><td>str</td><td><code>`8Gi`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir.accessModes</td><td>list</td><td><code>`['ReadWriteOnce']`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir.accessModes[0]</td><td>str</td><td><code>`ReadWriteOnce`</code></td><td></td></tr><tr style="" ><td>persistence.mediaDir.annotations</td><td>dict</td><td><code>`{}`</code></td><td></td></tr>
-</table>
-
-
-</table>
-
-<h2>postgis</h2>
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>postgis</td><td>dict</td><td><code>`{'enabled': True, 'existingSecret': '{{ include "common.sharedSecretName" . \\| quote -}}'}`</code></td><td></td></tr><tr style="" ><td>postgis.enabled</td><td>bool</td><td><code>`True`</code></td><td><code> (bool) Enable postgis as database backend by default. Set to false if using different external backend.</code></td></tr><tr style="" ><td>postgis.existingSecret</td><td>tpl/string</td><td><code>`{{ include "common.sharedSecretName" . \| quote -}}`</code></td><td><code> (tpl/string) Existing secret to be used</code></td></tr>
-</table>
-
-
-</table>
-
-<h2>probe</h2> (tpl/object) Probe can be overridden
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-
-</table>
-
-
-</table>
-
-<h2>sampleYaml</h2>
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>sampleYaml</td><td>dict</td><td><code>`{}`</code></td><td></td></tr>
-</table>
-
-
-</table>
-
-<h2>service</h2>
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>service</td><td>dict</td><td><code>`{'type': 'ClusterIP', 'clusterIP': '', 'externalIPs': '', 'port': 80, 'nodePort': None, 'annotations': {}}`</code></td><td></td></tr><tr style="" ><td>service.type</td><td>string</td><td><code>`ClusterIP`</code></td><td><code> (string) Define k8s service for Django.</code></td></tr><tr style="" ><td>service.clusterIP</td><td>string</td><td><code>``</code></td><td><code> (string) Specify `None` for headless service. Otherwise, leave them be.</code></td></tr><tr style="" ><td>service.externalIPs</td><td>tpl/array</td><td><code>``</code></td><td><code> (tpl/array) Specify for LoadBalancer service type</code></td></tr><tr style="" ><td>service.port</td><td>int</td><td><code>`80`</code></td><td><code> (int) Specify service port</code></td></tr><tr style="" ><td>service.nodePort</td><td>int</td><td><code>`None`</code></td><td><code> (int) Specify node port, for NodePort service type</code></td></tr><tr style="" ><td>service.annotations</td><td>dict</td><td><code>`{}`</code></td><td><code> (dict) Extra service annotations</code></td></tr>
-</table>
-
-
-</table>
-
-
-</table>
-
-
+{{ template "chart.valuesSectionHtml" . }}
 
 Autogenerated from chart metadata using [doxy-helm v1.0.1](https://github.com/tactful-ai/doxyhelm)
-    
