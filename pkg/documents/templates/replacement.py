@@ -1,8 +1,9 @@
-from typing import Dict, Any
+from typing import Any
 
-from .chart import *
-from .values import *
-from .requirements import *
+from chart import *
+from requirements import *
+from values import *
+
 
 def replace_template_parts(template_content, chart_data, requirements_data, chart_folder):
     """
@@ -49,7 +50,7 @@ def replace_template_parts(template_content, chart_data, requirements_data, char
         '{{ template "chart.valuesTable" . }}': get_chart_values_table(chart_folder),
         '{{ template "chart.valuesSection" . }}': get_chart_values_section(chart_folder),
 
-        '{{ template "helm-docs.versionFooter" . }}': get_helm_docs_version_footer('v1.0.1'),
+        '{{ template "doxy-helm.versionFooter" . }}': get_doxy_helm_version_footer('v1.0.1'),
         '{{ template "extra.flower" . }}': 'Extra Flower Replacement',
     }
 
