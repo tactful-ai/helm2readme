@@ -160,7 +160,7 @@ def formate_description(comments):
 
 
 # Function to format a raw value with description and optional CSS
-def format_raw(value, prefix, comments, custom_css=""):
+def format_raw(value, prefix, comments, custom_css="", ignore_none_description= False):
     """
     Formats the provided value along with its description into a raw HTML table row.
 
@@ -180,7 +180,6 @@ def format_raw(value, prefix, comments, custom_css=""):
     description = formate_description(comments)
 
     # Check if ignore_none_description is enabled and no description is provided
-    ignore_none_description = get_ignore_non_descriptions()
     if ignore_none_description and not description:
         return ""
 

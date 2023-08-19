@@ -139,7 +139,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
         }]
 
 
-def convert_key_to_markdown(row):
+def convert_key_to_markdown(row, ignore_none_description=False):
     """
     Recursively converts a structured dictionary into markdown content.
 
@@ -159,21 +159,21 @@ def convert_key_to_markdown(row):
     # its contents to markdown content
     if isinstance(row, list):
         for v in row:
-            returned_raws += convert_key_to_markdown(v)
+            returned_raws += convert_key_to_markdown(v, ignore_none_description)
     # Handle dictionaries:
     elif isinstance(row, dict):
         if row['end_element']:
             # If it's an end element, format and return the row's value as markdown content
-            return format_raw(row['value'], row['title'], row['comments'], row['custom_css'])
+            return format_raw(row['value'], row['title'], row['comments'], row['custom_css'], ignore_none_description)
         else:
             # If it's not an end element, recursively convert the value part of the dictionary
             # and continue the process
-            return convert_key_to_markdown(row['value'])
+            return convert_key_to_markdown(row['value'], ignore_none_description)
 
     return returned_raws
 
 
-def convert_table_to_markdown(table, level=1):
+def convert_table_to_markdown(table, level=1, ignore_none_description=False):
     """
     Recursively converts a structured table to formatted markdown content.
 
@@ -220,14 +220,14 @@ def convert_table_to_markdown(table, level=1):
         if isinstance(row, list):
             # If the row is a list, iterate through its elements and convert each recursively
             for v in row:
-                markdown_content += convert_key_to_markdown(v)
+                markdown_content += convert_key_to_markdown(v, ignore_none_description)
         elif isinstance(row, dict):
             if row['new_table']:
                 # If the row indicates a new nested table, recursively convert it
-                markdown_content += convert_table_to_markdown(row, level + 1)
+                markdown_content += convert_table_to_markdown(row, level + 1, ignore_none_description)
             else:
                 # If it's not a new table, convert the row using convert_key_to_markdown
-                formatted_value = convert_key_to_markdown(row)
+                formatted_value = convert_key_to_markdown(row, ignore_none_description)
                 markdown_content += formatted_value
 
     if not table['is_section']:
@@ -305,7 +305,7 @@ def split_and_merge_tables(values_table, transfers_map):
     return sorted_global + sorted_splitted_tables
 
 
-def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_css_map):
+def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_css_map, ignore_none_description):
     """
     Generates markdown content by processing entries, applying custom CSS, and merging tables.
 
@@ -363,12 +363,12 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     markdown_content = ""
     # Convert each merged table to markdown content
     for table in final_tables:
-        markdown_content += convert_table_to_markdown(table)
+        markdown_content += convert_table_to_markdown(table, ignore_none_description)
 
     return markdown_content
 
 
-def read_and_print_values(values_path, sort='AlphaNum'):
+def read_and_print_values(values_path,ignore_none_description, sort='AlphaNum'):
     """
     Reads values from a YAML file, processes them, and generates markdown content for printing.
 
@@ -405,6 +405,6 @@ def read_and_print_values(values_path, sort='AlphaNum'):
     key_to_comment_map, transfers_map, custom_css_map = comment_parser.get_comments_map(values_path)
 
     # Generate markdown content using the extracted data
-    markdown_content = generate_markdown_output(top_level_entries, key_to_comment_map, transfers_map, custom_css_map)
+    markdown_content = generate_markdown_output(top_level_entries, key_to_comment_map, transfers_map, custom_css_map, ignore_none_description)
 
     return markdown_content
