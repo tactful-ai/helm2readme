@@ -1,0 +1,9 @@
+# noinspection YAMLSchemaValidation
+repos:
+  - repo: github.com/tactful-ai/doxy-helm
+    rev: v1.0.0
+    hooks:
+      - id: doxy-helm
+        args:
+          # Make the tool search for charts only under the `example-charts` directory
+          - --chart-search-root=example-charts

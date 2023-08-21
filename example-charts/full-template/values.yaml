@@ -1,8 +1,9 @@
-# -- @custom_css {color: yellow;}
+# -- @custom_css {color: red;}
 # -- hello
-  # -- {color: black;}
+# -- {text-align: right;}
 controller:
   name: controller
+  # -- {color: purple;}
   image:
     repository: nginx-ingress-controller
     tag: "18.0831"
