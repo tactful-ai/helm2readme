@@ -1,0 +1,17 @@
+- id: doxy-helm
+  args: []
+  description: Uses 'doxy-helm' to create documentation from the Helm chart's 'values.yaml' file, and inserts the result into a corresponding 'README.md' file.
+  entry: git-hook/git-hook
+  files: (README\.md\.gotmpl|(Chart|requirements|values)\.yaml)$
+  language: python
+  name: doxy-helm
+  require_serial: true
+
+- id: doxy-helm
+  args: []
+  description: Uses auto built 'doxy-helm' to create documentation from the Helm chart's 'values.yaml' file, and inserts the result into a corresponding 'README.md' file.
+  entry: helm-docs
+  files: (README\.md\.gotmpl|(Chart|requirements|values)\.yaml)$
+  language: python
+  name: doxy-helm Built
+  require_serial: true

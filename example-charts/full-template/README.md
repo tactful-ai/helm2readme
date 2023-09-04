@@ -168,18 +168,18 @@ Kubernetes: `<=1.18`
 ## `chart.valuesTable`
 
 <h1>> global</h1><h1>controller</h1><p><code> hello</code></p>
-<table style="color: yellow;color: yellow;color: black;">
+<table style="color: red;color: red;text-align: right;">
     <tr>
         <th>Key</th>
         <th>Type</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>controller</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td><p><code> hello</code></p></td></tr><tr style="" ><td>controller.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
+<tr style="" ><td>controller</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td><p><code> hello</code></p></td></tr><tr style="" ><td>controller.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="color: purple;" ><td>controller.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
 </table>
 
 <h1>controller13</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -190,7 +190,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>controller19</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -201,7 +201,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>services</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -212,7 +212,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> global.mahmoud</h1><h2>controller2</h2>
-<table style="color: yellow;color:pink;">
+<table style="color: red;color:pink;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -223,7 +223,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>--> global.mahmoud.waer</h2><h3>---> global.mahmoud.waer.king</h3><h4>controller8</h4>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -234,7 +234,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> global.mahmoud.waer.kok</h3><h4>controller9</h4>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -245,7 +245,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> global.mahmoud.waer.455454ss</h3><h4>----> global.mahmoud.waer.455454ss.stttopp</h4><h5>controller7</h5>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -256,7 +256,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> global.hello</h1><h2>controller3</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -267,7 +267,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>> dstny</h1><h1>controller4</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -278,7 +278,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> dstny.hamada</h1><h2>controller12</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -289,7 +289,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>controller6</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -311,7 +311,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>--> dstny.hamada.tooto</h2><h3>controller5</h3>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -322,7 +322,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> dstny.hamada.tooto.soso</h3><h4>controller11</h4><p><code> this is so good</code></p>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -333,18 +333,18 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> dstny.hamada.tooto.kiki</h3><h4>controller56</h4>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>controller56</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td></td></tr><tr style="" ><td>controller56.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller56.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller56.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller56.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller56.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>controller56.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>controller56.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller56.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
+<tr style="" ><td>controller56</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td></td></tr><tr style="" ><td>controller56.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller56.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller56.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller56.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller56.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td><p><code>1.  List of persistent volume claims to create.  <br/><br/>2.  For very long comments, break them into multiple lines.</code></p></td></tr><tr style="" ><td>controller56.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td><p><code> this is the extra volume for any additional data</code></p></td></tr><tr style="" ><td>controller56.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller56.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td><p><code> controller.ingressClass -- Name of the ingress class to route through this controller</code></p></td></tr>
 </table>
 
 <h1>> test</h1><h1>controller14</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -355,7 +355,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>controller15</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -366,7 +366,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>controller16</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -377,7 +377,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> test.test2</h1><h2>controller17</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -388,7 +388,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>controller18</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -418,18 +418,18 @@ Kubernetes: `<=1.18`
 
 
 <h1>> global</h1><h1>controller</h1><p><code> hello</code></p>
-<table style="color: yellow;color: yellow;color: black;">
+<table style="color: red;color: red;text-align: right;">
     <tr>
         <th>Key</th>
         <th>Type</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>controller</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td><p><code> hello</code></p></td></tr><tr style="" ><td>controller.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
+<tr style="" ><td>controller</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td><p><code> hello</code></p></td></tr><tr style="" ><td>controller.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="color: purple;" ><td>controller.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>controller.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
 </table>
 
 <h1>controller13</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -440,7 +440,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>controller19</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -451,7 +451,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>services</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -462,7 +462,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> global.mahmoud</h1><h2>controller2</h2>
-<table style="color: yellow;color:pink;">
+<table style="color: red;color:pink;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -473,7 +473,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>--> global.mahmoud.waer</h2><h3>---> global.mahmoud.waer.king</h3><h4>controller8</h4>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -484,7 +484,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> global.mahmoud.waer.kok</h3><h4>controller9</h4>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -495,7 +495,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> global.mahmoud.waer.455454ss</h3><h4>----> global.mahmoud.waer.455454ss.stttopp</h4><h5>controller7</h5>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -506,7 +506,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> global.hello</h1><h2>controller3</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -517,7 +517,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>> dstny</h1><h1>controller4</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -528,7 +528,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> dstny.hamada</h1><h2>controller12</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -539,7 +539,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>controller6</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -561,7 +561,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>--> dstny.hamada.tooto</h2><h3>controller5</h3>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -572,7 +572,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> dstny.hamada.tooto.soso</h3><h4>controller11</h4><p><code> this is so good</code></p>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -583,18 +583,18 @@ Kubernetes: `<=1.18`
 </table>
 
 <h3>---> dstny.hamada.tooto.kiki</h3><h4>controller56</h4>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>controller56</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td></td></tr><tr style="" ><td>controller56.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller56.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller56.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller56.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller56.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>controller56.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>controller56.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller56.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td></td></tr>
+<tr style="" ><td>controller56</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx'}`</code></td><td></td></tr><tr style="" ><td>controller56.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller56.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller56.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller56.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>controller56.persistentVolumeClaims</td><td>list</td><td><code>`[]`</code></td><td><p><code>1.  List of persistent volume claims to create.  <br/><br/>2.  For very long comments, break them into multiple lines.</code></p></td></tr><tr style="" ><td>controller56.extraVolumes</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td><p><code> this is the extra volume for any additional data</code></p></td></tr><tr style="" ><td>controller56.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>controller56.ingressClass</td><td>str</td><td><code>`nginx`</code></td><td><p><code> controller.ingressClass -- Name of the ingress class to route through this controller</code></p></td></tr>
 </table>
 
 <h1>> test</h1><h1>controller14</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -605,7 +605,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>controller15</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -616,7 +616,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>controller16</h1>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -627,7 +627,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h1>-> test.test2</h1><h2>controller17</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>
@@ -638,7 +638,7 @@ Kubernetes: `<=1.18`
 </table>
 
 <h2>controller18</h2>
-<table style="color: yellow;">
+<table style="color: red;">
     <tr>
         <th>Key</th>
         <th>Type</th>

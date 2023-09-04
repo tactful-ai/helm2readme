@@ -57,7 +57,7 @@ One of the best values parsing example charts here, exhibits several more compli
 <tr style="" ><td>services</td><td>dict</td><td><code>`{'api': {'image': None, 'tag': None}, 'front': {'image': None, 'tag': None}, 'elasticsearch': {'image': None, 'tag': None}}`</code></td><td></td></tr><tr style="" ><td>services.elasticsearch</td><td>dict</td><td><code>`{'image': None, 'tag': None}`</code></td><td></td></tr><tr style="" ><td>services.elasticsearch.image</td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>services.elasticsearch.tag</td><td>NoneType</td><td><code>`None`</code></td><td></td></tr>
 </table>
 
-<h1>statefulset</h1><p><code> Image to use for deploying, must support an entrypoint which creates users/databases from appropriate config files</code></p>
+<h1>> section-main</h1><h1>statefulset</h1><p><code> Image to use for deploying, must support an entrypoint which creates users/databases from appropriate config files</code></p>
 <table style="">
     <tr>
         <th>Key</th>

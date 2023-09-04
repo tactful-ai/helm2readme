@@ -1,8 +1,8 @@
 # -- Image to use for deploying, must support an entrypoint which creates users/databases from appropriate config files
+  # -- [section-main]
 statefulset:
   image:
     # -- Imeeeeeage to use for deploying, must support an entrypoint which creates users/databases from appropriate config files
-    # -- [section=global] Image to use for depeeloying, must support an entrypoint which creates users/databases from appropriate config files
     repository: jnorwood/postgresq
     tag: "11"
 
