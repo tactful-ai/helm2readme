@@ -93,6 +93,12 @@ pip install .
 
 ## Usage
 
+### Using Docker
+
+```bash
+docker run -v ./Helm-files-location:/app  doxy-helm
+```
+
 ### Pre-commit hook
 
 If you want to automatically generate `README.md` files with a pre-commit hook, make sure you
