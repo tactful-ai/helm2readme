@@ -67,6 +67,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/doxy-helm:latest
 
   publish-package:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
