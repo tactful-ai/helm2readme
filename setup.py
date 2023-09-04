@@ -14,4 +14,9 @@ setup(
         'markdown',
         'pyyaml'
     ],
+    entry_points={
+    'console_scripts': [
+        'doxy-helm = doxy_helm.main:main'
+    ]
+    }
 )
