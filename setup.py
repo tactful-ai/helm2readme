@@ -17,7 +17,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'doxy-helm = main:full_run'
+            'doxy-helm = main.py:full_run'
         ]
     },
 )
