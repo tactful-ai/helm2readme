@@ -16,7 +16,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'doxy-helm = doxy_helm.__main__:main'
+            'doxy-helm = doxy_helm:main'
         ]
     },
 )
