@@ -1,4 +1,5 @@
 argparse
 typing
-markdown
-pyyaml
+markdown~=3.4.4
+pyyaml~=6.0.1
+setuptools~=65.5.0
