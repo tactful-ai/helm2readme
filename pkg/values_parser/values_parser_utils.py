@@ -303,3 +303,20 @@ def check_for_ignore(comments):
             return True
 
     return False
+
+
+def remove_and_get_default(comments):
+    for comment in comments:
+        if '@default' in comment:
+            comments.remove(comment)
+            return comment
+
+    return False
+
+
+def extract_the_default_from_the_comment(comment):
+    parts = comment.split('@default', 1)
+    if len(parts) > 1:
+        return parts[1].strip()
+
+    return comment

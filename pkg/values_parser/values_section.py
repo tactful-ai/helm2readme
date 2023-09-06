@@ -3,7 +3,8 @@ from pkg.values_parser.table_formate.formate_table import formate_description, f
     start_table, end_table
 from pkg.helm.utils import read_yaml_file
 from pkg.values_parser.values_parser_utils import apply_custom_css, remove_element_by_key, append_element_to_table, \
-    insert_into_target_table, count_dots, check_for_ignore
+    insert_into_target_table, count_dots, check_for_ignore, extract_the_default_from_the_comment, \
+    remove_and_get_default
 
 
 def extract_top_level_entries(data):
@@ -162,8 +163,13 @@ def convert_key_to_markdown(row, ignore_none_description=False):
             returned_raws += convert_key_to_markdown(v, ignore_none_description)
     # Handle dictionaries:
     elif isinstance(row, dict):
+
         if check_for_ignore(row['comments']):
             return ''
+
+        target_comment = remove_and_get_default(row['comments'])
+        if target_comment:
+            row['value'] = extract_the_default_from_the_comment(target_comment)
 
         if row['end_element']:
             # If it's an end element, format and return the row's value as markdown content
