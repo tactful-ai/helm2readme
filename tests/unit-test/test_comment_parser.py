@@ -40,10 +40,10 @@ class TestCommentParser(unittest.TestCase):
         self.comment_parser.prefix_keys = []
         self.comment_parser.last_key_indentation = [-1]
 
-        self.comment_parser._process_key(stripped_line, current_indentation)
+        self.comment_parser._process_key(stripped_line, current_indentation, 1)
 
         expected_comments_map = {
-            'example_key': {'afterComments': [], 'beforeComments': ['Comment before key']}
+            'example_key': {'afterComments': [], 'beforeComments': ['Comment before key'], 'line_number': 1}
         }
         self.assertEqual(self.comment_parser.key_to_comment_map, expected_comments_map)
 
@@ -53,7 +53,7 @@ class TestCommentParser(unittest.TestCase):
         yaml_file = mock_file.return_value.__enter__.return_value
         comments, transfers, custom_css = self.comment_parser.parse_comment_from_string(yaml_file)
 
-        expected_comments_map = {'key1': {'beforeComments': [], 'afterComments': []}}
+        expected_comments_map = {'key1': {'beforeComments': [], 'afterComments': [], 'line_number': 1}}
         expected_transfers_map = []
         expected_custom_css_map = []
 

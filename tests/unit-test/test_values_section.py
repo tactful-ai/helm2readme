@@ -86,7 +86,7 @@ class TestValuesParser(unittest.TestCase):
         value = 'scalar value'
         prefix = 'example'
         comments_map = {
-            'example': {'beforeComments': 'This is an example value', 'afterComments': []}
+            'example': {'beforeComments': 'This is an example value', 'afterComments': [], 'line_number': 1}
         }
         formatted_value = get_entry_value(value, prefix, comments_map)
         self.assertEqual(formatted_value[0]['title'], 'example')
@@ -98,11 +98,12 @@ class TestValuesParser(unittest.TestCase):
             'title': 'example',
             'value': 'scalar value',
             'comments': 'This is an example value',
+            'line_number': 1,
             'custom_css': '',
             'end_element': True
         }
         markdown_content = convert_key_to_markdown(row, False)
-        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False)
+        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False, row['line_number'])
         self.assertEqual(markdown_content, expected_content)
 
     def test_convert_key_to_markdown_list(self):
@@ -110,11 +111,12 @@ class TestValuesParser(unittest.TestCase):
             'title': 'example',
             'value': [1, 2, 3],
             'comments': 'This is an example value',
+            'line_number': 1,
             'custom_css': '',
             'end_element': True
         }
         markdown_content = convert_key_to_markdown(row)
-        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'])
+        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False, row['line_number'])
         self.assertEqual(markdown_content, expected_content)
 
     def test_convert_key_to_markdown_dict(self):
@@ -125,11 +127,12 @@ class TestValuesParser(unittest.TestCase):
                 'key2': [1, 2, 3]
             },
             'comments': 'This is an example value',
+            'line_number': 1,
             'custom_css': '',
             'end_element': True
         }
         markdown_content = convert_key_to_markdown(row)
-        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'])
+        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False, row['line_number'])
         self.assertEqual(markdown_content, expected_content)
 
     def test_convert_table_to_markdown(self):
@@ -142,6 +145,7 @@ class TestValuesParser(unittest.TestCase):
                     'comments': ['Comment for key1'],
                     'custom_css': '',
                     'end_element': True,
+                    'line_number': 1,
                     'new_table': False
                 },
                 {
@@ -149,6 +153,7 @@ class TestValuesParser(unittest.TestCase):
                     'value': 1,
                     'comments': ['Comment for key2'],
                     'custom_css': '',
+                    'line_number': 5,
                     'end_element': True,
                     'new_table': False
                 }
@@ -156,6 +161,7 @@ class TestValuesParser(unittest.TestCase):
             'comments': ['This is an example value'],
             'custom_css': '',
             'end_element': False,
+            'line_number': 9,
             'new_table': True,
             'is_section': False
         }
