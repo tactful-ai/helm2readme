@@ -43,7 +43,27 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>controller</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}}`</code></td><td></td></tr><tr style="" ><td>controller.name</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>controller.image</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>controller.image.repository</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>controller.image.tag</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr>
+<tr style="" ><td>
+
+[controller](./values.yaml#L2)
+
+</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}}`</code></td><td></td></tr><tr style="" ><td>
+
+[controller.name](./values.yaml#L4)
+
+</td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>
+
+[controller.image](./values.yaml#L6)
+
+</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>
+
+[controller.image.repository](./values.yaml#L8)
+
+</td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>
+
+[controller.image.tag](./values.yaml#L10)
+
+</td><td>str</td><td><code>`18.0831`</code></td><td></td></tr>
 </table>
 
 

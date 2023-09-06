@@ -91,6 +91,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'new_table': False,
                 'custom_css': '',
                 'end_element': True,
+                'line_number': list_comments['line_number'],
                 'is_section': False
             }
         ]
@@ -104,6 +105,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'comments': comments,
                 'new_table': False,
                 'custom_css': '',
+                'line_number': list_comments['line_number'],
                 'end_element': True,
                 'is_section': False
             })
@@ -117,6 +119,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'comments': list_comments['beforeComments'],
                 'new_table': False,
                 'custom_css': '',
+                'line_number': list_comments['line_number'],
                 'end_element': True,
                 'is_section': False
             }
@@ -135,6 +138,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
             'comments': comments['beforeComments'],
             'new_table': False,
             'custom_css': '',
+            'line_number': comments['line_number'],
             'end_element': True,
             'is_section': False
         }]
@@ -173,7 +177,7 @@ def convert_key_to_markdown(row, ignore_none_description=False):
 
         if row['end_element']:
             # If it's an end element, format and return the row's value as markdown content
-            return format_raw(row['value'], row['title'], row['comments'], row['custom_css'], ignore_none_description)
+            return format_raw(row['value'], row['title'], row['comments'], row['custom_css'], ignore_none_description, row['line_number'])
         else:
             # If it's not an end element, recursively convert the value part of the dictionary
             # and continue the process
@@ -362,6 +366,7 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
             'new_table': True,
             'custom_css': '',
             'end_element': False,
+            'line_number': key_to_comment_map[title]['line_number'],
             'is_section': False
         })
 
