@@ -9,6 +9,7 @@ from pkg.helm.Template import load_readme_template
 from pkg.helm.utils import write_file
 
 
+
 def process_single_chart(chart_directory, template_files, ignore_none_description, values_path):
     readme_template = load_readme_template(chart_directory, template_files)
     # init chart data
@@ -50,20 +51,3 @@ def full_run():
         except Exception as e:
             print("Error in chart directory: " + chart_directory)
             print(e)
-
-def testing_chart():
-    chart_directory = r'.\example-charts\ignored-values-example'
-    template_files = 'README.md.gotmpl'
-    output_file = 'README.md'
-    readMe = process_single_chart(chart_directory, template_files, False, 'values.yaml')
-    readme_directory = os.path.join(chart_directory, output_file)
-    print(readme_directory)
-    write_file(readMe, readme_directory)
-
-
-def main():
-    # full_run()
-    testing_chart()
-
-if __name__ == "__main__":
-    main()
