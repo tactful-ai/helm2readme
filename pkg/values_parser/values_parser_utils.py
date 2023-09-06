@@ -294,3 +294,12 @@ def count_dots(element):
         # Output: 2
     """
     return element.count('.')
+
+
+def check_for_ignore(comments):
+
+    for comment in comments:
+        if '@ignore' in comment:
+            return True
+
+    return False

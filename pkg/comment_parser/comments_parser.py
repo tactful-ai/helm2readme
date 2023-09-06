@@ -86,7 +86,7 @@ class CommentParser:
 
                 stripped_line = line.strip()
 
-                if stripped_line.startswith('# --'):
+                if stripped_line.startswith('# --') | stripped_line.startswith('# @'):
                     self._process_comment(stripped_line)
                 elif stripped_line.startswith('-'):
                     self._process_array()

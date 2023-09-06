@@ -11,7 +11,7 @@ from pkg.documents.templates.requirements import get_chart_requirements_section,
 from pkg.documents.templates.values import get_chart_values_header, get_chart_values_table, get_chart_values_section
 
 
-def replace_template_parts(template_content, chart_data, requirements_data, chart_folder):
+def replace_template_parts(template_content, chart_data, requirements_data, chart_folder, ignore_none_description, values_path):
     """
     Replaces template parts in the given template content with corresponding values.
 
@@ -53,8 +53,8 @@ def replace_template_parts(template_content, chart_data, requirements_data, char
         '{{ template "chart.requirementsTable" . }}': get_chart_requirements_table(requirements_data),
 
         '{{ template "chart.valuesHeader" . }}': get_chart_values_header(),
-        '{{ template "chart.valuesTable" . }}': get_chart_values_table(chart_folder),
-        '{{ template "chart.valuesSection" . }}': get_chart_values_section(chart_folder),
+        '{{ template "chart.valuesTable" . }}': get_chart_values_table(chart_folder, ignore_none_description, values_path),
+        '{{ template "chart.valuesSection" . }}': get_chart_values_section(chart_folder, ignore_none_description, values_path),
 
         '{{ template "doxy-helm.versionFooter" . }}': get_doxy_helm_version_footer('v1.0.1'),
         '{{ template "extra.flower" . }}': 'Extra Flower Replacement',

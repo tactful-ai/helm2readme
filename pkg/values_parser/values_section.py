@@ -3,7 +3,7 @@ from pkg.values_parser.table_formate.formate_table import formate_description, f
     start_table, end_table
 from pkg.helm.utils import read_yaml_file
 from pkg.values_parser.values_parser_utils import apply_custom_css, remove_element_by_key, append_element_to_table, \
-    insert_into_target_table, count_dots
+    insert_into_target_table, count_dots, check_for_ignore
 
 
 def extract_top_level_entries(data):
@@ -162,6 +162,9 @@ def convert_key_to_markdown(row, ignore_none_description=False):
             returned_raws += convert_key_to_markdown(v, ignore_none_description)
     # Handle dictionaries:
     elif isinstance(row, dict):
+        if check_for_ignore(row['comments']):
+            return ''
+
         if row['end_element']:
             # If it's an end element, format and return the row's value as markdown content
             return format_raw(row['value'], row['title'], row['comments'], row['custom_css'], ignore_none_description)
@@ -175,14 +178,14 @@ def convert_key_to_markdown(row, ignore_none_description=False):
 
 def convert_table_to_markdown(table, level=1, ignore_none_description=False):
     """
-    Recursively converts a structured table to formatted markdown content.
+    Recursively converts a structured table to format markdown content.
 
     This function takes a structured table (dictionary) and recursively converts it into formatted
     markdown content. It handles nested dictionaries and lists, creating Markdown tables and headers.
 
     Args:
         table (dict): A structured dictionary representing a Markdown table.
-        level (int, optional): The nesting level of the table (default is 1).
+        Level (int, optional): The nesting level of the table (default is 1).
 
     Returns:
         str: Formatted markdown content.
@@ -195,14 +198,21 @@ def convert_table_to_markdown(table, level=1, ignore_none_description=False):
                 {'title': 'example.key2[0]', 'value': 1, ...},
                 ...
 
-            'comments': 'This is an example value',
+            'Comments': 'This is an example value',
             'new_table': True,
             'custom_css': '',
             'end_element': False,
         }
         markdown_content = convert_table_to_markdown(structured_table)
         # Output: Formatted markdown content representing the structured table.
+        :param level:
+        :param table:
+        :param ignore_none_description:
     """
+
+    if check_for_ignore(table['comments']):
+        return ''
+
     markdown_content = ""
 
     table_title = table.get('title', '') if not table.get('is_section', False) else level * '-' + '> ' + table.get('title', '')
@@ -217,6 +227,7 @@ def convert_table_to_markdown(table, level=1, ignore_none_description=False):
         markdown_content += start_table(table['custom_css'])
 
     for row in table['value']:
+
         if isinstance(row, list):
             # If the row is a list, iterate through its elements and convert each recursively
             for v in row:
@@ -309,7 +320,7 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     """
     Generates markdown content by processing entries, applying custom CSS, and merging tables.
 
-    This function takes entries, key-to-comment map, transfers map, and custom CSS map, processes the entries to
+    This function takes entries, key-to-comment map, transfer map, and custom CSS map, processes the entries to
     create structured tables, applies custom CSS to the tables, and then merges tables based on transfers map.
 
     Args:
@@ -323,6 +334,11 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
 
     Example:
         markdown_output = generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_css_map)
+        :param entries:
+        :param key_to_comment_map:
+        :param transfers_map:
+        :param custom_css_map:
+        :param ignore_none_description:
     """
     values_table = []
 
@@ -368,7 +384,7 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     return markdown_content
 
 
-def read_and_print_values(values_path,ignore_none_description, sort='AlphaNum'):
+def read_and_print_values(values_path, ignore_none_description, sort='AlphaNum'):
     """
     Reads values from a YAML file, processes them, and generates markdown content for printing.
 
@@ -384,6 +400,7 @@ def read_and_print_values(values_path,ignore_none_description, sort='AlphaNum'):
 
     Example:
         markdown_output = read_and_print_values('values.yaml', sort='AlphaNum')
+        :param ignore_none_description:
     """
     # Read data from the YAML file
     values_data = read_yaml_file(values_path)
@@ -405,6 +422,7 @@ def read_and_print_values(values_path,ignore_none_description, sort='AlphaNum'):
     key_to_comment_map, transfers_map, custom_css_map = comment_parser.get_comments_map(values_path)
 
     # Generate markdown content using the extracted data
-    markdown_content = generate_markdown_output(top_level_entries, key_to_comment_map, transfers_map, custom_css_map, ignore_none_description)
+    markdown_content = generate_markdown_output(top_level_entries, key_to_comment_map, transfers_map,
+                                                custom_css_map, ignore_none_description)
 
     return markdown_content
