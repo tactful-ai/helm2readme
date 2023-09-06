@@ -1,5 +1,4 @@
 from pkg.values_parser.values_section import read_and_print_values
-from ...cmd.command_line import get_values_file, get_ignore_non_descriptions
 import os
 
 
@@ -14,7 +13,7 @@ def get_chart_values_header():
     return values_header_markdown
 
 
-def get_chart_values_table(chart_folder):
+def get_chart_values_table(chart_folder, ignore_none_description, values_path):
     """
     Generates markdown tables for the 'Values' section of the chart.
 
@@ -24,16 +23,14 @@ def get_chart_values_table(chart_folder):
     Returns:
         str: Markdown tables representing the 'Values' section of the chart.
     """
-    ignore_none_description = get_ignore_non_descriptions()
 
-    values_path = get_values_file()  # Get the path to the values.yaml file from command line arguments
     values_path = os.path.join(chart_folder, values_path)  # Construct the full path to the values.yaml file
     values_tables = read_and_print_values(values_path,
                                           ignore_none_description)  # Read and print the values from the values.yaml file
     return values_tables
 
 
-def get_chart_values_section(chart_folder):
+def get_chart_values_section(chart_folder, ignore_none_description, values_path):
     """
     Generates the complete markdown section for the 'Values' section of the chart.
 
@@ -43,5 +40,5 @@ def get_chart_values_section(chart_folder):
     Returns:
         str: Complete markdown section for the 'Values' section of the chart.
     """
-    values_section_markdown = f"{get_chart_values_header()}\n\n" + get_chart_values_table(chart_folder)
+    values_section_markdown = f"{get_chart_values_header()}\n\n" + get_chart_values_table(chart_folder,ignore_none_description, values_path )
     return values_section_markdown

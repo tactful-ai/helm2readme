@@ -8,14 +8,16 @@ from pkg.cmd.command_line import parse_command_line_args
 from pkg.helm.Template import load_readme_template
 from pkg.helm.utils import write_file
 
-def process_single_chart(chart_directory, template_files):
+
+
+def process_single_chart(chart_directory, template_files, ignore_none_description, values_path):
     readme_template = load_readme_template(chart_directory, template_files)
     # init chart data
     chart_data = get_chart_data(chart_directory)
     # init requirements data
     requirements_data = get_requirements_data(chart_directory, chart_data)
     # replace template parts
-    readme_file = replace_template_parts(readme_template, chart_data, requirements_data, chart_directory)
+    readme_file = replace_template_parts(readme_template, chart_data, requirements_data, chart_directory, ignore_none_description, values_path)
 
     return readme_file
 
@@ -35,7 +37,7 @@ def full_run():
     # for each chart directory
     for chart_directory in chart_directories:
         try:
-            readMe = process_single_chart(chart_directory, template_file)
+            readMe = process_single_chart(chart_directory, template_file, ignore_non_descriptions, values_file)
             # if dry run active just print the readme file
             if dry_run:
                 print(readMe)
