@@ -96,7 +96,7 @@ pip install .
 ### Using Docker
 
 ```bash
-docker run -v ./Helm-files-location:/app  doxy-helm
+docker run -v ./Helm-files-location:/app  waer/doxy-helm
 ```
 
 ### Pre-commit hook
