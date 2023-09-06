@@ -45,15 +45,15 @@ A chart demonstrating handling of special characters in values files
     </tr>
 <tr style="" ><td>
 
-[elasticsearch](.\values.yaml#L1)
+[elasticsearch](./values.yaml#L1)
 
 </td><td>dict</td><td><code>`{'clusterHealthCheckParams': 'wait_for_status=yellow&timeout=1s', 'clusterHealthCheckParamsDescription': ''}`</code></td><td></td></tr><tr style="" ><td>
 
-[elasticsearch.clusterHealthCheckParams](.\values.yaml#L3)
+[elasticsearch.clusterHealthCheckParams](./values.yaml#L3)
 
 </td><td>str</td><td><code>`wait_for_status=yellow&timeout=1s`</code></td><td></td></tr><tr style="" ><td>
 
-[elasticsearch.clusterHealthCheckParamsDescription](.\values.yaml#L9)
+[elasticsearch.clusterHealthCheckParamsDescription](./values.yaml#L9)
 
 </td><td>str</td><td><code>``</code></td><td></td></tr>
 </table>
@@ -68,11 +68,11 @@ A chart demonstrating handling of special characters in values files
     </tr>
 <tr style="" ><td>
 
-[htmlSnippets](.\values.yaml#L11)
+[htmlSnippets](./values.yaml#L11)
 
 </td><td>dict</td><td><code>`{'one': "<html>\n  <head></head>\n  <body>\n    <h1>Is this right, I don't know html</h1>\n  </body>\n</html>", 'two': '', 'three': ''}`</code></td><td></td></tr><tr style="" ><td>
 
-[htmlSnippets.one](.\values.yaml#L12)
+[htmlSnippets.one](./values.yaml#L12)
 
 </td><td>str</td><td><code>`<html>
   <head></head>
@@ -81,11 +81,11 @@ A chart demonstrating handling of special characters in values files
   </body>
 </html>`</code></td><td></td></tr><tr style="" ><td>
 
-[htmlSnippets.two](.\values.yaml#L21)
+[htmlSnippets.two](./values.yaml#L21)
 
 </td><td>str</td><td><code>``</code></td><td></td></tr><tr style="" ><td>
 
-[htmlSnippets.three](.\values.yaml#L25)
+[htmlSnippets.three](./values.yaml#L25)
 
 </td><td>str</td><td><code>`-- `"<html><head></head></html>"``</code></td><td></td></tr>
 </table>

@@ -41,19 +41,19 @@ A chart whose values file has dos line endings rather than unix ones
     </tr>
 <tr style="" ><td>
 
-[controller](.\values.yaml#L11)
+[controller](./values.yaml#L11)
 
 </td><td>dict</td><td><code>`{'publishService': {'enabled': False}, 'replicas': 2}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.publishService](.\values.yaml#L12)
+[controller.publishService](./values.yaml#L12)
 
 </td><td>dict</td><td><code>`{'enabled': False}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.publishService.enabled](.\values.yaml#L14)
+[controller.publishService.enabled](./values.yaml#L14)
 
 </td><td>bool</td><td><code>`False`</code></td><td><p><code> Whether to expose the ingress controller to the public world sdf</code></p></td></tr><tr style="" ><td>
 
-[controller.replicas](.\values.yaml#L18)
+[controller.replicas](./values.yaml#L18)
 
 </td><td>int</td><td><code>`2`</code></td><td><p><code> Number of nginx-ingress pods to load balance between sdf.</code></p></td></tr>
 </table>
@@ -68,19 +68,19 @@ A chart whose values file has dos line endings rather than unix ones
     </tr>
 <tr style="" ><td>
 
-[livenessProbe](.\values.yaml#L5)
+[livenessProbe](./values.yaml#L5)
 
 </td><td>dict</td><td><code>`{'httpGet': {'path': '/healthz', 'port': 'http'}}`</code></td><td></td></tr><tr style="" ><td>
 
-[livenessProbe.httpGet](.\values.yaml#L6)
+[livenessProbe.httpGet](./values.yaml#L6)
 
 </td><td>dict</td><td><code>`{'path': '/healthz', 'port': 'http'}`</code></td><td></td></tr><tr style="" ><td>
 
-[livenessProbe.httpGet.path](.\values.yaml#L8)
+[livenessProbe.httpGet.path](./values.yaml#L8)
 
 </td><td>str</td><td><code>`/healthz`</code></td><td><p><code> This is the liveness check endpoint</code></p></td></tr><tr style="" ><td>
 
-[livenessProbe.httpGet.port](.\values.yaml#L9)
+[livenessProbe.httpGet.port](./values.yaml#L9)
 
 </td><td>str</td><td><code>`http`</code></td><td></td></tr>
 </table>

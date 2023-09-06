@@ -51,71 +51,71 @@ $ helm install my-release foo-bar/custom-template
     </tr>
 <tr style="" ><td>
 
-[controller](.\values.yaml#L1)
+[controller](./values.yaml#L1)
 
 </td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'ingressClass': 'nginx', 'podLabels': {}, 'publishService': {'enabled': False}, 'replicas': None, 'service': {'annotations': {'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}, 'type': 'LoadBalancer'}}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.name](.\values.yaml#L2)
+[controller.name](./values.yaml#L2)
 
 </td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.image](.\values.yaml#L3)
+[controller.image](./values.yaml#L3)
 
 </td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.image.repository](.\values.yaml#L4)
+[controller.image.repository](./values.yaml#L4)
 
 </td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.image.tag](.\values.yaml#L5)
+[controller.image.tag](./values.yaml#L5)
 
 </td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.persistentVolumeClaims](.\values.yaml#L10)
+[controller.persistentVolumeClaims](./values.yaml#L10)
 
 </td><td>str</td><td><code>`-- the chart will construct this list internally unless specified`</code></td><td><p><code> List of persistent volume claims to create.</code></p></td></tr><tr style="" ><td>
 
-[controller.extraVolumes](.\values.yaml#L12)
+[controller.extraVolumes](./values.yaml#L12)
 
 </td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.extraVolumes[0]](.\values.yaml#L12)
+[controller.extraVolumes[0]](./values.yaml#L12)
 
 </td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.ingressClass](.\values.yaml#L19)
+[controller.ingressClass](./values.yaml#L19)
 
 </td><td>str</td><td><code>`nginx`</code></td><td><p><code> Name of the ingress class to route through this controller</code></p></td></tr><tr style="" ><td>
 
-[controller.podLabels](.\values.yaml#L22)
+[controller.podLabels](./values.yaml#L22)
 
 </td><td>dict</td><td><code>`{}`</code></td><td><p><code> The labels to be applied to instances of the controller pod</code></p></td></tr><tr style="" ><td>
 
-[controller.publishService](.\values.yaml#L24)
+[controller.publishService](./values.yaml#L24)
 
 </td><td>dict</td><td><code>`{'enabled': False}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.publishService.enabled](.\values.yaml#L26)
+[controller.publishService.enabled](./values.yaml#L26)
 
 </td><td>bool</td><td><code>`False`</code></td><td><p><code> Whether to expose the ingress controller to the public world</code></p></td></tr><tr style="" ><td>
 
-[controller.replicas](.\values.yaml#L29)
+[controller.replicas](./values.yaml#L29)
 
 </td><td>NoneType</td><td><code>`None`</code></td><td><p><code> (int) Number of nginx-ingress pods to load balance between</code></p></td></tr><tr style="" ><td>
 
-[controller.service](.\values.yaml#L31)
+[controller.service](./values.yaml#L31)
 
 </td><td>dict</td><td><code>`{'annotations': {'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}, 'type': 'LoadBalancer'}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.service.annotations](.\values.yaml#L32)
+[controller.service.annotations](./values.yaml#L32)
 
 </td><td>dict</td><td><code>`{'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.service.annotations.external-dns.alpha.kubernetes.io/hostname](.\values.yaml#L34)
+[controller.service.annotations.external-dns.alpha.kubernetes.io/hostname](./values.yaml#L34)
 
 </td><td>str</td><td><code>`stupidchess.jmn23.com`</code></td><td><p><code> Hostname to be assigned to the ELB for the service</code></p></td></tr><tr style="" ><td>
 
-[controller.service.type](.\values.yaml#L36)
+[controller.service.type](./values.yaml#L36)
 
 </td><td>str</td><td><code>`LoadBalancer`</code></td><td></td></tr>
 </table>
