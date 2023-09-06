@@ -1,4 +1,3 @@
-from pkg.cmd.command_line import get_ignore_non_descriptions
 import markdown
 
 
