@@ -43,7 +43,51 @@ A simple chart that installs, let's say PrometheusRules, that needs no sub-chart
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>rules</td><td>dict</td><td><code>`{'latency': {'percentiles': {'99': {'threshold': 1.5, 'duration': '5m'}}}, 'statusCodes': {'codes': {'5xx': {'threshold': 1.5, 'duration': '5m'}}}}`</code></td><td></td></tr><tr style="" ><td>rules.latency</td><td>dict</td><td><code>`{'percentiles': {'99': {'threshold': 1.5, 'duration': '5m'}}}`</code></td><td></td></tr><tr style="" ><td>rules.latency.percentiles</td><td>dict</td><td><code>`{'99': {'threshold': 1.5, 'duration': '5m'}}`</code></td><td></td></tr><tr style="" ><td>rules.latency.percentiles.99</td><td>dict</td><td><code>`{'threshold': 1.5, 'duration': '5m'}`</code></td><td></td></tr><tr style="" ><td>rules.latency.percentiles.99.threshold</td><td>float</td><td><code>`1.5`</code></td><td></td></tr><tr style="" ><td>rules.latency.percentiles.99.duration</td><td>str</td><td><code>`5m`</code></td><td></td></tr><tr style="" ><td>rules.statusCodes</td><td>dict</td><td><code>`{'codes': {'5xx': {'threshold': 1.5, 'duration': '5m'}}}`</code></td><td></td></tr><tr style="" ><td>rules.statusCodes.codes</td><td>dict</td><td><code>`{'5xx': {'threshold': 1.5, 'duration': '5m'}}`</code></td><td></td></tr><tr style="" ><td>rules.statusCodes.codes.5xx</td><td>dict</td><td><code>`{'threshold': 1.5, 'duration': '5m'}`</code></td><td></td></tr><tr style="" ><td>rules.statusCodes.codes.5xx.threshold</td><td>float</td><td><code>`1.5`</code></td><td></td></tr><tr style="" ><td>rules.statusCodes.codes.5xx.duration</td><td>str</td><td><code>`5m`</code></td><td></td></tr>
+<tr style="" ><td>
+
+[rules](./values.yaml#L1)
+
+</td><td>dict</td><td><code>`{'latency': {'percentiles': {'99': {'threshold': 1.5, 'duration': '5m'}}}, 'statusCodes': {'codes': {'5xx': {'threshold': 1.5, 'duration': '5m'}}}}`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.latency](./values.yaml#L2)
+
+</td><td>dict</td><td><code>`{'percentiles': {'99': {'threshold': 1.5, 'duration': '5m'}}}`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.latency.percentiles](./values.yaml#L3)
+
+</td><td>dict</td><td><code>`{'99': {'threshold': 1.5, 'duration': '5m'}}`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.latency.percentiles.99](./values.yaml#L4)
+
+</td><td>dict</td><td><code>`{'threshold': 1.5, 'duration': '5m'}`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.latency.percentiles.99.threshold](./values.yaml#L6)
+
+</td><td>float</td><td><code>`1.5`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.latency.percentiles.99.duration](./values.yaml#L8)
+
+</td><td>str</td><td><code>`5m`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.statusCodes](./values.yaml#L10)
+
+</td><td>dict</td><td><code>`{'codes': {'5xx': {'threshold': 1.5, 'duration': '5m'}}}`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.statusCodes.codes](./values.yaml#L11)
+
+</td><td>dict</td><td><code>`{'5xx': {'threshold': 1.5, 'duration': '5m'}}`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.statusCodes.codes.5xx](./values.yaml#L12)
+
+</td><td>dict</td><td><code>`{'threshold': 1.5, 'duration': '5m'}`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.statusCodes.codes.5xx.threshold](./values.yaml#L14)
+
+</td><td>float</td><td><code>`1.5`</code></td><td></td></tr><tr style="" ><td>
+
+[rules.statusCodes.codes.5xx.duration](./values.yaml#L16)
+
+</td><td>str</td><td><code>`5m`</code></td><td></td></tr>
 </table>
 
 
