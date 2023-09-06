@@ -86,6 +86,6 @@ jobs:
 
       - name: Build and Publish
         run: |
-          python setup.py sdist bdist_wheel
           pip install twine
+          python setup.py sdist bdist_wheel
           twine upload --verbose -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*

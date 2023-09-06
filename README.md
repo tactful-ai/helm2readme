@@ -256,8 +256,6 @@ Results in:
 <tr style="" ><td>livenessProbe</td><td>dict</td><td><code>`{'httpGet': {'path': '/healthz', 'port': 'http'}}`</code></td><td><p><code> Configure the healthcheck for the ingress controller</code></p></td></tr><tr style="" ><td>livenessProbe.httpGet</td><td>dict</td><td><code>`{'path': '/healthz', 'port': 'http'}`</code></td><td></td></tr><tr style="" ><td>livenessProbe.httpGet.path</td><td>str</td><td><code>`/healthz`</code></td><td><p><code> This is the liveness check endpoint</code></p></td></tr><tr style="" ><td>livenessProbe.httpGet.port</td><td>str</td><td><code>`http`</code></td><td></td></tr>
 </table>
 
-
-
 ### Custom css
 you can add css for one table or element in table or even for add tables in the values section by adding `@customcss` tag to the start of table.
 and for each single css that can be added to the table or element in table or even for add tables in the values section by adding `-- {the css you want}` tag to the start of table.

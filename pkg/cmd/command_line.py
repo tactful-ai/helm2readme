@@ -29,37 +29,3 @@ def parse_command_line_args():
 
     return args
 
-
-def get_table_depth():
-    parser = argparse.ArgumentParser(description="Helm Docs Command Line Tool")
-    parser.add_argument("-td", "--table-depth", default=1, type=int, help="Depth of separate tables to generate")
-    args = parser.parse_args()
-    return args.table_depth
-
-
-def get_ignore_non_descriptions():
-    parser = argparse.ArgumentParser(description="Helm Docs Command Line Tool")
-    parser.add_argument("-n", "--ignore-non-descriptions", default=False, action="store_true", help="Ignore values without a comment, these values will not be included in the README")
-    args = ''
-    try:
-        args = parser.parse_args()
-    except Exception as e:
-        print(e)
-
-    return args.ignore_non_descriptions
-
-
-def get_values_sort_order():
-    return 'File'
-    parser = argparse.ArgumentParser(description="Helm Docs Command Line Tool")
-    parser.add_argument("-s", "--sort-values-order", default="File", choices=["AlphaNum", "File"], help="Order in which to sort the values table")
-    args = parser.parse_args()
-    return args.sort_values_order
-
-
-def get_values_file():
-    return 'values.yaml'
-    parser = argparse.ArgumentParser(description="Helm Docs Command Line Tool")
-    parser.add_argument("-f", "--values-file", default="values.yaml", help="Path to values file")
-    args = parser.parse_args()
-    return args.values_file
