@@ -1,5 +1,7 @@
 import markdown
 import re
+import os
+
 
 
 def remove_special_chars(value):
@@ -176,9 +178,9 @@ def formate_key(key, values_path, line_number):
     if line_number < 0:
         return key
 
-    match = re.search(r'.*\\(.*$)', values_path)
-    final_path = ".\\" + match.group(1)
-    markdown_key = f"\n\n[{key}]({final_path}#L{line_number})\n\n"
+    match = re.search(r'.*[\\\/](.*$)', values_path)
+    result = os.path.join(".", match.group(1))
+    markdown_key = f"\n\n[{key}]({result}#L{line_number})\n\n"
 
     return markdown_key
 
