@@ -39,6 +39,9 @@ def get_chart_values_section(chart_folder, ignore_none_description, values_path)
 
     Returns:
         str: Complete markdown section for the 'Values' section of the chart.
+        :param chart_folder:
+        :param values_path:
+        :param ignore_none_description:
     """
-    values_section_markdown = f"{get_chart_values_header()}\n\n" + get_chart_values_table(chart_folder,ignore_none_description, values_path )
+    values_section_markdown = f"{get_chart_values_header()}\n\n" + get_chart_values_table(chart_folder, ignore_none_description, values_path)
     return values_section_markdown

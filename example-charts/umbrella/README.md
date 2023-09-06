@@ -39,7 +39,15 @@ A chart demonstrating that values documentation from child charts are aggregated
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>global</td><td>dict</td><td><code>`{'myGlobalKey': 'my-global-value'}`</code></td><td></td></tr><tr style="" ><td>global.myGlobalKey</td><td>str</td><td><code>`my-global-value`</code></td><td><p><code> A global key</code></p></td></tr>
+<tr style="" ><td>
+
+[global](./values.yaml#L1)
+
+</td><td>dict</td><td><code>`{'myGlobalKey': 'my-global-value'}`</code></td><td></td></tr><tr style="" ><td>
+
+[global.myGlobalKey](./values.yaml#L3)
+
+</td><td>str</td><td><code>`my-global-value`</code></td><td><p><code> A global key</code></p></td></tr>
 </table>
 
 <h1>myParentKey</h1><p><code> A parent key</code></p>
@@ -50,7 +58,11 @@ A chart demonstrating that values documentation from child charts are aggregated
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>myParentKey</td><td>str</td><td><code>`my-parent-value`</code></td><td><p><code> A parent key</code></p></td></tr>
+<tr style="" ><td>
+
+[myParentKey](./values.yaml#L6)
+
+</td><td>str</td><td><code>`my-parent-value`</code></td><td><p><code> A parent key</code></p></td></tr>
 </table>
 
 

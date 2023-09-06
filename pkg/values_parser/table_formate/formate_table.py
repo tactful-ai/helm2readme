@@ -102,7 +102,7 @@ def extract_text(comment):
         The extracted text from the comment.
     """
     prefix = "-- ("  # Prefix indicating start of text
-    suffix = ")"     # Suffix indicating end of text
+    suffix = ")"  # Suffix indicating end of text
 
     # Find the start and end of the text within parentheses
     start = comment.find(prefix)
@@ -150,7 +150,7 @@ def formate_description(comments):
 
     description = "  <br/><br/>".join([f"{comment}" for comment in numbered_comments])
     if description:
-        description = "<code>" +  description + "</code>"
+        description = "<code>" + description + "</code>"
 
     markdown_description = markdown.markdown(description)
 
@@ -158,8 +158,27 @@ def formate_description(comments):
     return markdown_description
 
 
+def formate_key(key, line_number):
+    """
+    formate the key to be link to the line number in the file
+
+    Args:
+        key: the key string.
+        line_number: the line number in the file.
+
+    Returns:
+        A formatted HTML description.
+    """
+    if(line_number < 0):
+        return key
+
+    markdown_key = f"\n\n[{key}](./values.yaml#L{line_number})\n\n"
+
+    return markdown_key
+
+
 # Function to format a raw value with description and optional CSS
-def format_raw(value, prefix, comments, custom_css="", ignore_none_description= False):
+def format_raw(value, prefix, comments, custom_css="", ignore_none_description=False, line_number=-1):
     """
     Formats the provided value along with its description into a raw HTML table row.
 
@@ -177,6 +196,9 @@ def format_raw(value, prefix, comments, custom_css="", ignore_none_description= 
 
     # Format the description using the formate_description function
     description = formate_description(comments)
+
+    # Format the key using the formate_key function
+    prefix = formate_key(prefix, line_number)
 
     # Check if ignore_none_description is enabled and no description is provided
     if ignore_none_description and not description:
@@ -231,6 +253,7 @@ def start_table(custom_css=""):
         <th>Description</th>
     </tr>
 """
+
 
 end_table = """
 </table>\n

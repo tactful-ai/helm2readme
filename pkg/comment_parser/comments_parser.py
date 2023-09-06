@@ -27,7 +27,7 @@ class CommentParser:
         self.current_comment = []
         self.is_array = True
 
-    def _process_key(self, stripped_line, current_indentation):
+    def _process_key(self, stripped_line, current_indentation, line_number):
         current_key = stripped_line.split(':')[0].strip().strip("\"").strip("\'")
 
         if current_indentation > self.last_key_indentation[-1]:
@@ -63,10 +63,13 @@ class CommentParser:
 
         self.key_to_comment_map[f'{self.full_key}'] = {'beforeComments': [], 'afterComments': []}
         self.key_to_comment_map[f'{self.full_key}']['beforeComments'] = self.current_comment
+        self.key_to_comment_map[f'{self.full_key}']['line_number'] = line_number
         self.current_comment = []
 
     def parse_comment_from_string(self, yaml_file):
+        line_number = 0
         for line in yaml_file:
+            line_number += 1
             if line.strip():
                 current_indentation = count_indentation(line)
                 is_comment = line.lstrip().startswith('#')
@@ -86,14 +89,15 @@ class CommentParser:
 
                 stripped_line = line.strip()
 
-                if stripped_line.startswith('# --'):
+                if stripped_line.startswith('# --') | stripped_line.startswith('# @'):
                     self._process_comment(stripped_line)
                 elif stripped_line.startswith('-'):
                     self._process_array()
                 elif ':' in stripped_line:
-                    self._process_key(stripped_line, current_indentation)
+                    self._process_key(stripped_line, current_indentation, line_number)
 
                 self.previous_indentation = current_indentation
+
 
         return self.key_to_comment_map, self.transfers_map, self.custom_css_map
 
