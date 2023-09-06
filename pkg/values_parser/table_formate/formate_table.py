@@ -1,4 +1,5 @@
 import markdown
+import re
 
 
 def remove_special_chars(value):
@@ -158,7 +159,7 @@ def formate_description(comments):
     return markdown_description
 
 
-def formate_key(key, line_number):
+def formate_key(key, values_path, line_number):
     """
     formate the key to be link to the line number in the file
 
@@ -168,17 +169,22 @@ def formate_key(key, line_number):
 
     Returns:
         A formatted HTML description.
+        :param line_number:
+        :param key:
+        :param values_path:
     """
-    if(line_number < 0):
+    if line_number < 0:
         return key
 
-    markdown_key = f"\n\n[{key}](./values.yaml#L{line_number})\n\n"
+    match = re.search(r'.*\\(.*$)', values_path)
+    final_path = ".\\" + match.group(1)
+    markdown_key = f"\n\n[{key}]({final_path}#L{line_number})\n\n"
 
     return markdown_key
 
 
 # Function to format a raw value with description and optional CSS
-def format_raw(value, prefix, comments, custom_css="", ignore_none_description=False, line_number=-1):
+def format_raw(value, prefix, comments, values_path, custom_css="", ignore_none_description=False, line_number=-1):
     """
     Formats the provided value along with its description into a raw HTML table row.
 
@@ -198,7 +204,7 @@ def format_raw(value, prefix, comments, custom_css="", ignore_none_description=F
     description = formate_description(comments)
 
     # Format the key using the formate_key function
-    prefix = formate_key(prefix, line_number)
+    prefix = formate_key(prefix, values_path, line_number)
 
     # Check if ignore_none_description is enabled and no description is provided
     if ignore_none_description and not description:

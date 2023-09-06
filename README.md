@@ -96,21 +96,8 @@ pip install .
 ### Using Docker
 
 ```bash
-docker run -v ./Helm-files-location:/app  waer/doxy-helm
+docker run --rm -v ./Helm-files-location:/app  waer/doxy-helm:latest
 ```
-
-### Pre-commit hook
-
-If you want to automatically generate `README.md` files with a pre-commit hook, make sure you
-[install the pre-commit binary](https://pre-commit.com/#install), and add a [.pre-commit-config.yaml file](./.pre-commit-config.yaml)
-to your project. Then run:
-
-```bash
-pre-commit install
-pre-commit install-hooks
-```
-
-Future changes to your chart's `requirements.yaml`, `values.yaml`, `Chart.yaml`, or `README.md.gotmpl` files will cause an update to documentation when you commit.
 
 ### Running the binary directly
 
@@ -124,15 +111,6 @@ doxy --dry-run # prints generated documentation to stdout rather than modifying 
 
 The tool searches recursively through subdirectories of the current directory for `Chart.yaml` files and generates documentation for every chart that it finds.
 
-### Using docker
-
-You can mount a directory with charts under `/doxy-helm` within the container.
-
-Then run:
-
-```bash
-docker run --rm --volume "$(pwd):/doxy-helm" -u $(id -u) waer1/doxy-helm:latest
-```
 
 ## Ignoring Chart Directories
 The doxy-helm tool supports a .helmdocsignore file, similar to a .gitignore file, where you can specify directories to be excluded from the chart search process. This feature allows you to ignore directories that might contain multiple charts or unrelated files, ensuring that only the desired charts are processed. You can also directly reference the Chart.yaml file for a specific chart to prevent it from being processed.
@@ -309,6 +287,41 @@ it will be rendered as follow:
 <tr style="" ><td>statefulset</td><td>dict</td><td><code>`{'image': {'repository': 'jnorwood/postgresq', 'tag': '11'}, 'extraVolumes': [{'name': 'data', 'emptyDir': {}, 'emptyDisr': {}, 'emptyDisqr': {}}], 'livenessProbe': {'enabled': False}, 'podLabels': {}}`</code></td><td><p><code> Image to use for deploying, must support an entrypoint which creates users/databases from appropriate config files</code></p></td></tr><tr style="" ><td>statefulset.image</td><td>dict</td><td><code>`{'repository': 'jnorwood/postgresq', 'tag': '11'}`</code></td><td></td></tr><tr style="" ><td>statefulset.image.repository</td><td>str</td><td><code>`jnorwood/postgresq`</code></td><td><p><code> Imeeeeeage to use for deploying, must support an entrypoint which creates users/databases from appropriate config files</code></p></td></tr><tr style="" ><td>statefulset.image.tag</td><td>str</td><td><code>`11`</code></td><td></td></tr><tr style="" ><td>statefulset.extraVolumes</td><td>list</td><td><code>`[{'name': 'data', 'emptyDir': {}, 'emptyDisr': {}, 'emptyDisqr': {}}]`</code></td><td><p><code> Additional volumes to be mounted into the database container</code></p></td></tr><tr style="" ><td>statefulset.extraVolumes[0]</td><td>dict</td><td><code>`{'name': 'data', 'emptyDir': {}, 'emptyDisr': {}, 'emptyDisqr': {}}`</code></td><td></td></tr><tr style="" ><td>statefulset.livenessProbe</td><td>dict</td><td><code>`{'enabled': False}`</code></td><td><p><code> Configure the healthcheck for the database</code></p></td></tr><tr style="" ><td>statefulset.livenessProbe.enabled</td><td>bool</td><td><code>`False`</code></td><td></td></tr><tr style="" ><td>statefulset.podLabels</td><td>dict</td><td><code>`{}`</code></td><td><p><code> The labels to be applied to instances of the database</code></p></td></tr>
 </table>
 
+
+### column navigation
+every colum key is link to his line in the values file which ease the process of editing and reaching out the keys using the docuemntation.
+example of the link:
+<h1>livenessProbe</h1>
+<table style="">
+    <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+<tr style="" ><td>
+
+[livenessProbe](./values.yaml#L5)
+
+</td><td>dict</td><td><code>`{'httpGet': {'path': '/healthz', 'port': 'http'}}`</code></td><td></td></tr><tr style="" ><td>
+
+[livenessProbe.httpGet](./values.yaml#L6)
+
+</td><td>dict</td><td><code>`{'path': '/healthz', 'port': 'http'}`</code></td><td></td></tr><tr style="" ><td>
+
+[livenessProbe.httpGet.path](./values.yaml#L8)
+
+</td><td>str</td><td><code>`/healthz`</code></td><td><p><code> This is the liveness check endpoint</code></p></td></tr><tr style="" ><td>
+
+[livenessProbe.httpGet.port](./values.yaml#L9)
+
+</td><td>str</td><td><code>`http`</code></td><td></td></tr>
+</table>
+
+
+
+
+
 ### nil values
 If you would like to define a key for a value, but leave the default empty, you can still specify a description for it
 as well as a type. This is possible with both the old and the new comment format:
@@ -322,7 +335,7 @@ controller:
 ```
 This could be useful when wanting to enforce user-defined values for the chart, where there are no sensible defaults.
 
-### Default values/column (Soon)
+### Default values/column
 In cases where you do not want to include the default value from `values.yaml`, or where the real default is calculated
 inside the chart, you can change the contents of the column like so:
 

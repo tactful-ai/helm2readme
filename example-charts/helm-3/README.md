@@ -45,87 +45,87 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
     </tr>
 <tr style="" ><td>
 
-[controller](./values.yaml#L1)
+[controller](.\values.yaml#L1)
 
 </td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'livenessProbe': {'httpGet': {'path': '/healthz', 'port': 8080}}, 'ingressClass': 'nginx', 'podLabels': {}, 'publishService': {'enabled': False}, 'replicas': None, 'service': {'annotations': {'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}, 'type': 'LoadBalancer'}}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.name](./values.yaml#L2)
+[controller.name](.\values.yaml#L2)
 
 </td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.image](./values.yaml#L3)
+[controller.image](.\values.yaml#L3)
 
 </td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.image.repository](./values.yaml#L4)
+[controller.image.repository](.\values.yaml#L4)
 
 </td><td>str</td><td><code>`nginx-ingress-controller`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.image.tag](./values.yaml#L5)
+[controller.image.tag](.\values.yaml#L5)
 
 </td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.persistentVolumeClaims](./values.yaml#L8)
+[controller.persistentVolumeClaims](.\values.yaml#L8)
 
 </td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.extraVolumes](./values.yaml#L11)
+[controller.extraVolumes](.\values.yaml#L11)
 
 </td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.extraVolumes[0]](./values.yaml#L11)
+[controller.extraVolumes[0]](.\values.yaml#L11)
 
 </td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.livenessProbe](./values.yaml#L17)
+[controller.livenessProbe](.\values.yaml#L17)
 
 </td><td>dict</td><td><code>`{'httpGet': {'path': '/healthz', 'port': 8080}}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.livenessProbe.httpGet](./values.yaml#L18)
+[controller.livenessProbe.httpGet](.\values.yaml#L18)
 
 </td><td>dict</td><td><code>`{'path': '/healthz', 'port': 8080}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.livenessProbe.httpGet.path](./values.yaml#L20)
+[controller.livenessProbe.httpGet.path](.\values.yaml#L20)
 
 </td><td>str</td><td><code>`/healthz`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.livenessProbe.httpGet.port](./values.yaml#L21)
+[controller.livenessProbe.httpGet.port](.\values.yaml#L21)
 
 </td><td>int</td><td><code>`8080`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.ingressClass](./values.yaml#L24)
+[controller.ingressClass](.\values.yaml#L24)
 
 </td><td>str</td><td><code>`nginx`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.podLabels](./values.yaml#L27)
+[controller.podLabels](.\values.yaml#L27)
 
 </td><td>dict</td><td><code>`{}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.publishService](./values.yaml#L29)
+[controller.publishService](.\values.yaml#L29)
 
 </td><td>dict</td><td><code>`{'enabled': False}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.publishService.enabled](./values.yaml#L31)
+[controller.publishService.enabled](.\values.yaml#L31)
 
 </td><td>bool</td><td><code>`False`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.replicas](./values.yaml#L34)
+[controller.replicas](.\values.yaml#L34)
 
 </td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.service](./values.yaml#L36)
+[controller.service](.\values.yaml#L36)
 
 </td><td>dict</td><td><code>`{'annotations': {'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}, 'type': 'LoadBalancer'}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.service.annotations](./values.yaml#L37)
+[controller.service.annotations](.\values.yaml#L37)
 
 </td><td>dict</td><td><code>`{'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.service.annotations.external-dns.alpha.kubernetes.io/hostname](./values.yaml#L39)
+[controller.service.annotations.external-dns.alpha.kubernetes.io/hostname](.\values.yaml#L39)
 
 </td><td>str</td><td><code>`stupidchess.jmn23.com`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.service.type](./values.yaml#L41)
+[controller.service.type](.\values.yaml#L41)
 
 </td><td>str</td><td><code>`LoadBalancer`</code></td><td></td></tr>
 </table>

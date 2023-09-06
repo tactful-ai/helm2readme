@@ -45,15 +45,15 @@ A chart demonstrating handling of special characters in values files
     </tr>
 <tr style="" ><td>
 
-[elasticsearch](./values.yaml#L1)
+[elasticsearch](.\values.yaml#L1)
 
 </td><td>dict</td><td><code>`{'clusterHealthCheckParams': 'wait_for_status=yellow&timeout=1s', 'clusterHealthCheckParamsDescription': ''}`</code></td><td></td></tr><tr style="" ><td>
 
-[elasticsearch.clusterHealthCheckParams](./values.yaml#L3)
+[elasticsearch.clusterHealthCheckParams](.\values.yaml#L3)
 
 </td><td>str</td><td><code>`wait_for_status=yellow&timeout=1s`</code></td><td><p><code> The Elasticsearch cluster health status params that will be used by readinessProbe command</code></p></td></tr><tr style="" ><td>
 
-[elasticsearch.clusterHealthCheckParamsDescription](./values.yaml#L6)
+[elasticsearch.clusterHealthCheckParamsDescription](.\values.yaml#L6)
 
 </td><td>str</td><td><code>``</code></td><td><p><code> Now let's put some special characters in the description: wait_for_status=yellow&amp;timeout=1s</code></p></td></tr>
 </table>
@@ -68,11 +68,11 @@ A chart demonstrating handling of special characters in values files
     </tr>
 <tr style="" ><td>
 
-[htmlSnippets](./values.yaml#L8)
+[htmlSnippets](.\values.yaml#L8)
 
 </td><td>dict</td><td><code>`{'one': "<html>\n  <head></head>\n  <body>\n    <h1>Is this right, I don't know html</h1>\n  </body>\n</html>", 'two': '', 'three': ''}`</code></td><td></td></tr><tr style="" ><td>
 
-[htmlSnippets.one](./values.yaml#L9)
+[htmlSnippets.one](.\values.yaml#L9)
 
 </td><td>str</td><td><code>`<html>
   <head></head>
@@ -81,11 +81,11 @@ A chart demonstrating handling of special characters in values files
   </body>
 </html>`</code></td><td></td></tr><tr style="" ><td>
 
-[htmlSnippets.two](./values.yaml#L20)
+[htmlSnippets.two](.\values.yaml#L20)
 
 </td><td>str</td><td><code>``</code></td><td><p><code> Let's put it in the description <html></html></code></p></td></tr><tr style="" ><td>
 
-[htmlSnippets.three](./values.yaml#L24)
+[htmlSnippets.three](.\values.yaml#L24)
 
 </td><td>str</td><td><code>`-- `"<html><head></head></html>"``</code></td><td><p><code> Another description</code></p></td></tr>
 </table>
