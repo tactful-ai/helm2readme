@@ -54,14 +54,16 @@ def full_run():
 def testing_chart():
     chart_directory = r'.\example-charts\ignored-values-example'
     template_files = 'README.md.gotmpl'
-    output_file = "README.md"
-    dry_run = False
-    process_single_chart(chart_directory, template_files, output_file, dry_run)
+    output_file = 'README.md'
+    readMe = process_single_chart(chart_directory, template_files, False, 'values.yaml')
+    readme_directory = os.path.join(chart_directory, output_file)
+    print(readme_directory)
+    write_file(readMe, readme_directory)
 
 
 def main():
-    full_run()
-    # testing_chart()
+    # full_run()
+    testing_chart()
 
 if __name__ == "__main__":
     main()
