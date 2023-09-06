@@ -34,8 +34,8 @@ def extract_top_level_entries(data):
     # Iterate through the dictionary items and create a structured list of entries
     for key, value in data.items():
         top_level_entries.append({
-            "title": key,       # The title (key) of the entry
-            "value": value      # The value of the entry
+            "title": key,  # The title (key) of the entry
+            "value": value  # The value of the entry
         })
 
     return top_level_entries
@@ -144,7 +144,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
         }]
 
 
-def convert_key_to_markdown(row, ignore_none_description=False):
+def convert_key_to_markdown(row, values_path, ignore_none_description=False):
     """
     Recursively converts a structured dictionary into markdown content.
 
@@ -164,7 +164,7 @@ def convert_key_to_markdown(row, ignore_none_description=False):
     # its contents to markdown content
     if isinstance(row, list):
         for v in row:
-            returned_raws += convert_key_to_markdown(v, ignore_none_description)
+            returned_raws += convert_key_to_markdown(v, values_path, ignore_none_description)
     # Handle dictionaries:
     elif isinstance(row, dict):
 
@@ -177,16 +177,17 @@ def convert_key_to_markdown(row, ignore_none_description=False):
 
         if row['end_element']:
             # If it's an end element, format and return the row's value as markdown content
-            return format_raw(row['value'], row['title'], row['comments'], row['custom_css'], ignore_none_description, row['line_number'])
+            return format_raw(row['value'], row['title'], row['comments'], values_path, row['custom_css'],
+                              ignore_none_description, row['line_number'])
         else:
             # If it's not an end element, recursively convert the value part of the dictionary
             # and continue the process
-            return convert_key_to_markdown(row['value'], ignore_none_description)
+            return convert_key_to_markdown(row['value'], values_path, ignore_none_description)
 
     return returned_raws
 
 
-def convert_table_to_markdown(table, level=1, ignore_none_description=False):
+def convert_table_to_markdown(table, values_path, level=1, ignore_none_description=False):
     """
     Recursively converts a structured table to format markdown content.
 
@@ -225,7 +226,8 @@ def convert_table_to_markdown(table, level=1, ignore_none_description=False):
 
     markdown_content = ""
 
-    table_title = table.get('title', '') if not table.get('is_section', False) else level * '-' + '> ' + table.get('title', '')
+    table_title = table.get('title', '') if not table.get('is_section', False) else level * '-' + '> ' + table.get(
+        'title', '')
 
     table_title = generate_html_header(level, table_title)
     markdown_content += table_title
@@ -241,14 +243,14 @@ def convert_table_to_markdown(table, level=1, ignore_none_description=False):
         if isinstance(row, list):
             # If the row is a list, iterate through its elements and convert each recursively
             for v in row:
-                markdown_content += convert_key_to_markdown(v, ignore_none_description)
+                markdown_content += convert_key_to_markdown(v, values_path, ignore_none_description)
         elif isinstance(row, dict):
             if row['new_table']:
                 # If the row indicates a new nested table, recursively convert it
-                markdown_content += convert_table_to_markdown(row, level + 1, ignore_none_description)
+                markdown_content += convert_table_to_markdown(row, values_path, level + 1, ignore_none_description)
             else:
                 # If it's not a new table, convert the row using convert_key_to_markdown
-                formatted_value = convert_key_to_markdown(row, ignore_none_description)
+                formatted_value = convert_key_to_markdown(row, values_path, ignore_none_description)
                 markdown_content += formatted_value
 
     if not table['is_section']:
@@ -289,7 +291,8 @@ def split_and_merge_tables(values_table, transfers_map):
         target_table = remove_element_by_key(from_table, values_table[0]['value'])
 
         if target_table is None:
-            print(f"Warning: The table {from_table} is not found or maybe transferd in previous step in the values.yaml file. ")
+            print(
+                f"Warning: The table {from_table} is not found or maybe transferd in previous step in the values.yaml file. ")
             continue
 
         # Search for the target_table within the current values_table and already splitted_tables
@@ -326,7 +329,8 @@ def split_and_merge_tables(values_table, transfers_map):
     return sorted_global + sorted_splitted_tables
 
 
-def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_css_map, ignore_none_description):
+def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_css_map, ignore_none_description,
+                             values_path):
     """
     Generates markdown content by processing entries, applying custom CSS, and merging tables.
 
@@ -390,7 +394,7 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     markdown_content = ""
     # Convert each merged table to markdown content
     for table in final_tables:
-        markdown_content += convert_table_to_markdown(table, ignore_none_description)
+        markdown_content += convert_table_to_markdown(table, values_path, ignore_none_description)
 
     return markdown_content
 
@@ -434,6 +438,6 @@ def read_and_print_values(values_path, ignore_none_description, sort='AlphaNum')
 
     # Generate markdown content using the extracted data
     markdown_content = generate_markdown_output(top_level_entries, key_to_comment_map, transfers_map,
-                                                custom_css_map, ignore_none_description)
+                                                custom_css_map, ignore_none_description, values_path)
 
     return markdown_content

@@ -102,8 +102,8 @@ class TestValuesParser(unittest.TestCase):
             'custom_css': '',
             'end_element': True
         }
-        markdown_content = convert_key_to_markdown(row, False)
-        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False, row['line_number'])
+        markdown_content = convert_key_to_markdown(row, ".\\values.yml", False)
+        expected_content = format_raw(row['value'], row['title'], row['comments'], ".\\values.yml", row['custom_css'], False, row['line_number'])
         self.assertEqual(markdown_content, expected_content)
 
     def test_convert_key_to_markdown_list(self):
@@ -115,8 +115,8 @@ class TestValuesParser(unittest.TestCase):
             'custom_css': '',
             'end_element': True
         }
-        markdown_content = convert_key_to_markdown(row)
-        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False, row['line_number'])
+        markdown_content = convert_key_to_markdown(row, ".\\values.yml")
+        expected_content = format_raw(row['value'], row['title'], row['comments'], ".\\values.yml", row['custom_css'], False, row['line_number'])
         self.assertEqual(markdown_content, expected_content)
 
     def test_convert_key_to_markdown_dict(self):
@@ -131,8 +131,8 @@ class TestValuesParser(unittest.TestCase):
             'custom_css': '',
             'end_element': True
         }
-        markdown_content = convert_key_to_markdown(row)
-        expected_content = format_raw(row['value'], row['title'], row['comments'], row['custom_css'], False, row['line_number'])
+        markdown_content = convert_key_to_markdown(row, ".\\values.yml")
+        expected_content = format_raw(row['value'], row['title'], row['comments'], ".\\values.yml", row['custom_css'], False, row['line_number'])
         self.assertEqual(markdown_content, expected_content)
 
     def test_convert_table_to_markdown(self):
@@ -165,9 +165,9 @@ class TestValuesParser(unittest.TestCase):
             'new_table': True,
             'is_section': False
         }
-        markdown_content = convert_table_to_markdown(table,False)
+        markdown_content = convert_table_to_markdown(table, ".\\values.yml",False)
         expected_content = generate_html_header(1, table['title']) + formate_description(table['comments']) + start_table(table['custom_css']) + \
-            convert_key_to_markdown(table['value'][0], False) + convert_key_to_markdown(table['value'][1], False) + end_table
+            convert_key_to_markdown(table['value'][0], ".\\values.yml", False) + convert_key_to_markdown(table['value'][1], ".\\values.yml", False) + end_table
         self.assertEqual(markdown_content, expected_content)
 
     def test_split_and_merge_tables(self):
