@@ -35,7 +35,7 @@ A chart demonstrating handling of special characters in values files
 
 
 
-<h1>> global</h1><h1>elasticsearch</h1>
+<h1>elasticsearch</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -44,10 +44,6 @@ A chart demonstrating handling of special characters in values files
         <th>Description</th>
     </tr>
 <tr style="" ><td>
-
-[elasticsearch](./values.yaml#L1)
-
-</td><td>dict</td><td><code>`{'clusterHealthCheckParams': 'wait_for_status=yellow&timeout=1s', 'clusterHealthCheckParamsDescription': ''}`</code></td><td></td></tr><tr style="" ><td>
 
 [elasticsearch.clusterHealthCheckParams](./values.yaml#L3)
 
@@ -67,10 +63,6 @@ A chart demonstrating handling of special characters in values files
         <th>Description</th>
     </tr>
 <tr style="" ><td>
-
-[htmlSnippets](./values.yaml#L11)
-
-</td><td>dict</td><td><code>`{'one': "<html>\n  <head></head>\n  <body>\n    <h1>Is this right, I don't know html</h1>\n  </body>\n</html>", 'two': '', 'three': ''}`</code></td><td></td></tr><tr style="" ><td>
 
 [htmlSnippets.one](./values.yaml#L12)
 

@@ -90,7 +90,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'comments': list_comments['beforeComments'],
                 'new_table': False,
                 'custom_css': '',
-                'end_element': True,
+                'end_element': False,
                 'line_number': list_comments['line_number'],
                 'is_section': False
             }
@@ -120,7 +120,7 @@ def get_entry_value(value, prefix, key_to_comment_map):
                 'new_table': False,
                 'custom_css': '',
                 'line_number': list_comments['line_number'],
-                'end_element': True,
+                'end_element': False,
                 'is_section': False
             }
         ]
@@ -160,6 +160,7 @@ def convert_key_to_markdown(row, values_path, ignore_none_description=False):
     """
     returned_raws = ''
 
+
     # Handle lists: Iterate through each element in the list and recursively convert
     # its contents to markdown content
     if isinstance(row, list):
@@ -167,6 +168,9 @@ def convert_key_to_markdown(row, values_path, ignore_none_description=False):
             returned_raws += convert_key_to_markdown(v, values_path, ignore_none_description)
     # Handle dictionaries:
     elif isinstance(row, dict):
+
+        if not row['end_element']:
+            return ''
 
         if check_for_ignore(row['comments']):
             return ''
@@ -391,6 +395,12 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     # Split and merge tables based on transfer map
     final_tables = split_and_merge_tables(values_table, transfers_map)
 
+    for table in final_tables:
+        if table['title'] == 'global':
+            tables = table['value']
+            final_tables.remove(table)
+            final_tables = tables + final_tables
+
     markdown_content = ""
     # Convert each merged table to markdown content
     for table in final_tables:
@@ -399,7 +409,7 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     return markdown_content
 
 
-def read_and_print_values(values_path, ignore_none_description, sort='AlphaNum'):
+def read_and_print_values(values_path, ignore_none_description, sort='File'):
     """
     Reads values from a YAML file, processes them, and generates markdown content for printing.
 

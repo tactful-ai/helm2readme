@@ -31,7 +31,7 @@ A chart demonstrating that values documentation from child charts are aggregated
 
 
 
-<h1>> global</h1><h1>global</h1>
+<h1>global</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -40,10 +40,6 @@ A chart demonstrating that values documentation from child charts are aggregated
         <th>Description</th>
     </tr>
 <tr style="" ><td>
-
-[global](./values.yaml#L1)
-
-</td><td>dict</td><td><code>`{'myGlobalKey': 'my-global-value'}`</code></td><td></td></tr><tr style="" ><td>
 
 [global.myGlobalKey](./values.yaml#L3)
 

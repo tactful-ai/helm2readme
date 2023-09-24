@@ -35,7 +35,7 @@ A simple chart that installs, let's say PrometheusRules, that needs no sub-chart
 
 
 
-<h1>> global</h1><h1>rules</h1>
+<h1>rules</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -45,22 +45,6 @@ A simple chart that installs, let's say PrometheusRules, that needs no sub-chart
     </tr>
 <tr style="" ><td>
 
-[rules](./values.yaml#L1)
-
-</td><td>dict</td><td><code>`{'latency': {'percentiles': {'99': {'threshold': 1.5, 'duration': '5m'}}}, 'statusCodes': {'codes': {'5xx': {'threshold': 1.5, 'duration': '5m'}}}}`</code></td><td></td></tr><tr style="" ><td>
-
-[rules.latency](./values.yaml#L2)
-
-</td><td>dict</td><td><code>`{'percentiles': {'99': {'threshold': 1.5, 'duration': '5m'}}}`</code></td><td></td></tr><tr style="" ><td>
-
-[rules.latency.percentiles](./values.yaml#L3)
-
-</td><td>dict</td><td><code>`{'99': {'threshold': 1.5, 'duration': '5m'}}`</code></td><td></td></tr><tr style="" ><td>
-
-[rules.latency.percentiles.99](./values.yaml#L4)
-
-</td><td>dict</td><td><code>`{'threshold': 1.5, 'duration': '5m'}`</code></td><td></td></tr><tr style="" ><td>
-
 [rules.latency.percentiles.99.threshold](./values.yaml#L6)
 
 </td><td>float</td><td><code>`1.5`</code></td><td></td></tr><tr style="" ><td>
@@ -68,18 +52,6 @@ A simple chart that installs, let's say PrometheusRules, that needs no sub-chart
 [rules.latency.percentiles.99.duration](./values.yaml#L8)
 
 </td><td>str</td><td><code>`5m`</code></td><td></td></tr><tr style="" ><td>
-
-[rules.statusCodes](./values.yaml#L10)
-
-</td><td>dict</td><td><code>`{'codes': {'5xx': {'threshold': 1.5, 'duration': '5m'}}}`</code></td><td></td></tr><tr style="" ><td>
-
-[rules.statusCodes.codes](./values.yaml#L11)
-
-</td><td>dict</td><td><code>`{'5xx': {'threshold': 1.5, 'duration': '5m'}}`</code></td><td></td></tr><tr style="" ><td>
-
-[rules.statusCodes.codes.5xx](./values.yaml#L12)
-
-</td><td>dict</td><td><code>`{'threshold': 1.5, 'duration': '5m'}`</code></td><td></td></tr><tr style="" ><td>
 
 [rules.statusCodes.codes.5xx.threshold](./values.yaml#L14)
 
