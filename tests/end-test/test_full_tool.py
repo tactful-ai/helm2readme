@@ -34,7 +34,7 @@ class fullTest(unittest.TestCase):
         chart_directories = find_chart_directories(charts_search_root, ignore_file)
         # for each chart directory
         for chart_directory in chart_directories:
-                readMe = process_single_chart(chart_directory, template_file, ignore_non_descriptions, values_file)
+                readMe = process_single_chart(chart_directory, template_file, ignore_non_descriptions, values_file, sort_values_order)
                 correct_readme = ''
                 correct_readme_path = os.path.join(chart_directory, 'README.md')
                 with open(correct_readme_path, 'r') as correct_readme_file:

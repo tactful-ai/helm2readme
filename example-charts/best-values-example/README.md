@@ -35,7 +35,7 @@ One of the best values parsing example charts here, exhibits several more compli
 
 
 
-<h1>> global</h1><h1>config</h1>
+<h1>config</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -45,14 +45,6 @@ One of the best values parsing example charts here, exhibits several more compli
     </tr>
 <tr style="" ><td>
 
-[config](./values.yaml#L26)
-
-</td><td>dict</td><td><code>`{'databasesToCreate': ['postgresql', 'hashbash'], 'usersToCreate': [{'name': 'root', 'admin': True}, {'name': 'hashbash', 'readwriteDatabases': ['hashbash']}]}`</code></td><td></td></tr><tr style="" ><td>
-
-[config.databasesToCreate](./values.yaml#L28)
-
-</td><td>list</td><td><code>`['postgresql', 'hashbash']`</code></td><td><p><code> default database for storage of database metadataaaaaaa</code></p></td></tr><tr style="" ><td>
-
 [config.databasesToCreate[0]](./values.yaml#L28)
 
 </td><td>str</td><td><code>`postgresql`</code></td><td><p><code> default database for storage of database metadata</code></p></td></tr><tr style="" ><td>
@@ -60,10 +52,6 @@ One of the best values parsing example charts here, exhibits several more compli
 [config.databasesToCreate[1]](./values.yaml#L28)
 
 </td><td>str</td><td><code>`hashbash`</code></td><td><p><code> database for the <a href="https://github.com/norwoodj/hashbash">hashbash</a> project</code></p></td></tr><tr style="" ><td>
-
-[config.usersToCreate](./values.yaml#L36)
-
-</td><td>list</td><td><code>`[{'name': 'root', 'admin': True}, {'name': 'hashbash', 'readwriteDatabases': ['hashbash']}]`</code></td><td></td></tr><tr style="" ><td>
 
 [config.usersToCreate[0]](./values.yaml#L36)
 
@@ -84,14 +72,6 @@ One of the best values parsing example charts here, exhibits several more compli
     </tr>
 <tr style="" ><td>
 
-[services](./values.yaml#L53)
-
-</td><td>dict</td><td><code>`{'api': {'image': None, 'tag': None}, 'front': {'image': None, 'tag': None}, 'elasticsearch': {'image': None, 'tag': None}}`</code></td><td></td></tr><tr style="" ><td>
-
-[services.elasticsearch](./values.yaml#L65)
-
-</td><td>dict</td><td><code>`{'image': None, 'tag': None}`</code></td><td></td></tr><tr style="" ><td>
-
 [services.elasticsearch.image](./values.yaml#L66)
 
 </td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>
@@ -111,14 +91,6 @@ One of the best values parsing example charts here, exhibits several more compli
     </tr>
 <tr style="" ><td>
 
-[statefulset](./values.yaml#L3)
-
-</td><td>dict</td><td><code>`{'image': {'repository': 'jnorwood/postgresq', 'tag': '11'}, 'extraVolumes': [{'name': 'data', 'emptyDir': {}, 'emptyDisr': {}, 'emptyDisqr': {}}], 'livenessProbe': {'enabled': False}, 'podLabels': {}}`</code></td><td><p><code> Image to use for deploying, must support an entrypoint which creates users/databases from appropriate config files</code></p></td></tr><tr style="" ><td>
-
-[statefulset.image](./values.yaml#L4)
-
-</td><td>dict</td><td><code>`{'repository': 'jnorwood/postgresq', 'tag': '11'}`</code></td><td></td></tr><tr style="" ><td>
-
 [statefulset.image.repository](./values.yaml#L6)
 
 </td><td>str</td><td><code>`jnorwood/postgresq`</code></td><td><p><code> Imeeeeeage to use for deploying, must support an entrypoint which creates users/databases from appropriate config files</code></p></td></tr><tr style="" ><td>
@@ -127,25 +99,13 @@ One of the best values parsing example charts here, exhibits several more compli
 
 </td><td>str</td><td><code>`11`</code></td><td></td></tr><tr style="" ><td>
 
-[statefulset.extraVolumes](./values.yaml#L10)
-
-</td><td>list</td><td><code>`[{'name': 'data', 'emptyDir': {}, 'emptyDisr': {}, 'emptyDisqr': {}}]`</code></td><td><p><code> Additional volumes to be mounted into the database container</code></p></td></tr><tr style="" ><td>
-
 [statefulset.extraVolumes[0]](./values.yaml#L10)
 
 </td><td>dict</td><td><code>`{'name': 'data', 'emptyDir': {}, 'emptyDisr': {}, 'emptyDisqr': {}}`</code></td><td></td></tr><tr style="" ><td>
 
-[statefulset.livenessProbe](./values.yaml#L20)
-
-</td><td>dict</td><td><code>`{'enabled': False}`</code></td><td><p><code> Configure the healthcheck for the database</code></p></td></tr><tr style="" ><td>
-
 [statefulset.livenessProbe.enabled](./values.yaml#L21)
 
-</td><td>bool</td><td><code>`False`</code></td><td></td></tr><tr style="" ><td>
-
-[statefulset.podLabels](./values.yaml#L24)
-
-</td><td>dict</td><td><code>`{}`</code></td><td><p><code> The labels to be applied to instances of the database</code></p></td></tr>
+</td><td>bool</td><td><code>`False`</code></td><td></td></tr>
 </table>
 
 <h1>> section=api</h1><h1>services.api</h1>
@@ -157,10 +117,6 @@ One of the best values parsing example charts here, exhibits several more compli
         <th>Description</th>
     </tr>
 <tr style="" ><td>
-
-[services.api](./values.yaml#L56)
-
-</td><td>dict</td><td><code>`{'image': None, 'tag': None}`</code></td><td></td></tr><tr style="" ><td>
 
 [services.api.image](./values.yaml#L57)
 
@@ -181,10 +137,6 @@ One of the best values parsing example charts here, exhibits several more compli
     </tr>
 <tr style="" ><td>
 
-[services.front](./values.yaml#L61)
-
-</td><td>dict</td><td><code>`{'image': None, 'tag': None}`</code></td><td></td></tr><tr style="" ><td>
-
 [services.front.image](./values.yaml#L62)
 
 </td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>
@@ -204,10 +156,6 @@ One of the best values parsing example charts here, exhibits several more compli
     </tr>
 <tr style="" ><td>
 
-[billing](./values.yaml#L44)
-
-</td><td>dict</td><td><code>`{'stripApiKey': 'hello'}`</code></td><td></td></tr><tr style="" ><td>
-
 [billing.stripApiKey](./values.yaml#L45)
 
 </td><td>str</td><td><code>`hello`</code></td><td></td></tr>
@@ -222,10 +170,6 @@ One of the best values parsing example charts here, exhibits several more compli
         <th>Description</th>
     </tr>
 <tr style="" ><td>
-
-[subscription](./values.yaml#L48)
-
-</td><td>dict</td><td><code>`{'subscriptionApiKey': 'hello2'}`</code></td><td></td></tr><tr style="" ><td>
 
 [subscription.subscriptionApiKey](./values.yaml#L49)
 

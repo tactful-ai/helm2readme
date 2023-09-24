@@ -35,7 +35,7 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
 
 
 
-<h1>> global</h1><h1>controller</h1>
+<h1>controller</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -45,17 +45,9 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
     </tr>
 <tr style="" ><td>
 
-[controller](./values.yaml#L1)
-
-</td><td>dict</td><td><code>`{'name': 'controller', 'image': {'repository': 'nginx-ingress-controller', 'tag': '18.0831'}, 'persistentVolumeClaims': [], 'extraVolumes': [{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}], 'livenessProbe': {'httpGet': {'path': '/healthz', 'port': 8080}}, 'ingressClass': 'nginx', 'podLabels': {}, 'publishService': {'enabled': False}, 'replicas': None, 'service': {'annotations': {'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}, 'type': 'LoadBalancer'}}`</code></td><td></td></tr><tr style="" ><td>
-
 [controller.name](./values.yaml#L2)
 
 </td><td>str</td><td><code>`controller`</code></td><td></td></tr><tr style="" ><td>
-
-[controller.image](./values.yaml#L3)
-
-</td><td>dict</td><td><code>`{'repository': 'nginx-ingress-controller', 'tag': '18.0831'}`</code></td><td></td></tr><tr style="" ><td>
 
 [controller.image.repository](./values.yaml#L4)
 
@@ -65,25 +57,9 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
 
 </td><td>str</td><td><code>`18.0831`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.persistentVolumeClaims](./values.yaml#L8)
-
-</td><td>list</td><td><code>`[]`</code></td><td></td></tr><tr style="" ><td>
-
-[controller.extraVolumes](./values.yaml#L11)
-
-</td><td>list</td><td><code>`[{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}]`</code></td><td></td></tr><tr style="" ><td>
-
 [controller.extraVolumes[0]](./values.yaml#L11)
 
 </td><td>dict</td><td><code>`{'name': 'config-volume', 'configMap': {'name': 'nginx-ingress-config'}}`</code></td><td></td></tr><tr style="" ><td>
-
-[controller.livenessProbe](./values.yaml#L17)
-
-</td><td>dict</td><td><code>`{'httpGet': {'path': '/healthz', 'port': 8080}}`</code></td><td></td></tr><tr style="" ><td>
-
-[controller.livenessProbe.httpGet](./values.yaml#L18)
-
-</td><td>dict</td><td><code>`{'path': '/healthz', 'port': 8080}`</code></td><td></td></tr><tr style="" ><td>
 
 [controller.livenessProbe.httpGet.path](./values.yaml#L20)
 
@@ -97,14 +73,6 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
 
 </td><td>str</td><td><code>`nginx`</code></td><td></td></tr><tr style="" ><td>
 
-[controller.podLabels](./values.yaml#L27)
-
-</td><td>dict</td><td><code>`{}`</code></td><td></td></tr><tr style="" ><td>
-
-[controller.publishService](./values.yaml#L29)
-
-</td><td>dict</td><td><code>`{'enabled': False}`</code></td><td></td></tr><tr style="" ><td>
-
 [controller.publishService.enabled](./values.yaml#L31)
 
 </td><td>bool</td><td><code>`False`</code></td><td></td></tr><tr style="" ><td>
@@ -112,14 +80,6 @@ A simple wrapper around the stable/nginx-ingress chart that adds a few of our co
 [controller.replicas](./values.yaml#L34)
 
 </td><td>NoneType</td><td><code>`None`</code></td><td></td></tr><tr style="" ><td>
-
-[controller.service](./values.yaml#L36)
-
-</td><td>dict</td><td><code>`{'annotations': {'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}, 'type': 'LoadBalancer'}`</code></td><td></td></tr><tr style="" ><td>
-
-[controller.service.annotations](./values.yaml#L37)
-
-</td><td>dict</td><td><code>`{'external-dns.alpha.kubernetes.io/hostname': 'stupidchess.jmn23.com'}`</code></td><td></td></tr><tr style="" ><td>
 
 [controller.service.annotations.external-dns.alpha.kubernetes.io/hostname](./values.yaml#L39)
 

@@ -35,7 +35,7 @@ Based on best-values-example
 
 
 
-<h1>> global</h1><h1>config</h1>
+<h1>statefulset</h1>
 <table style="">
     <tr>
         <th>Key</th>
@@ -45,13 +45,32 @@ Based on best-values-example
     </tr>
 <tr style="" ><td>
 
-[config](./values.yaml#L20)
+[statefulset.image.repository](./values.yaml#L5)
 
-</td><td>dict</td><td><code>`{'databasesToCreate': ['postgresql', 'hashbash'], 'usersToCreate': [{'name': 'root', 'admin': True}, {'name': 'hashbash', 'readwriteDatabases': ['hashbash']}, {'name': 'test', 'readDatabases': ['test']}]}`</code></td><td></td></tr><tr style="" ><td>
+</td><td>str</td><td><code>`jnorwood/postgresq`</code></td><td><p><code> Image to use for deploying, must support an entrypoint</code></p></td></tr><tr style="" ><td>
 
-[config.databasesToCreate](./values.yaml#L21)
+[statefulset.image.tag](./values.yaml#L6)
 
-</td><td>list</td><td><code>`['postgresql', 'hashbash']`</code></td><td></td></tr><tr style="" ><td>
+</td><td>str</td><td><code>`11`</code></td><td></td></tr><tr style="" ><td>
+
+[statefulset.extraVolumes[0]](./values.yaml#L9)
+
+</td><td>dict</td><td><code>`{'name': 'data', 'emptyDir': {}}`</code></td><td></td></tr><tr style="" ><td>
+
+[statefulset.livenessProbe.enabled](./values.yaml#L15)
+
+</td><td>bool</td><td><code>`False`</code></td><td></td></tr>
+</table>
+
+<h1>config</h1>
+<table style="">
+    <tr>
+        <th>Key</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+<tr style="" ><td>
 
 [config.databasesToCreate[0]](./values.yaml#L21)
 
@@ -60,10 +79,6 @@ Based on best-values-example
 [config.databasesToCreate[1]](./values.yaml#L21)
 
 </td><td>str</td><td><code>`hashbash`</code></td><td><p><code>1.  database for the <a href="https://github.com/norwoodj/hashbash">hashbash</a> project  <br/><br/>2.  database for the <a href="https://github.com/norwoodj/hashbash">hashbash</a> project</code></p></td></tr><tr style="" ><td>
-
-[config.usersToCreate](./values.yaml#L29)
-
-</td><td>list</td><td><code>`[{'name': 'root', 'admin': True}, {'name': 'hashbash', 'readwriteDatabases': ['hashbash']}, {'name': 'test', 'readDatabases': ['test']}]`</code></td><td></td></tr><tr style="" ><td>
 
 [config.usersToCreate[0]](./values.yaml#L29)
 
@@ -82,58 +97,7 @@ Based on best-values-example
         <th>Default</th>
         <th>Description</th>
     </tr>
-<tr style="" ><td>
 
-[configWithAllValuesIgnored](./values.yaml#L49)
-
-</td><td>dict</td><td><code>`{'ignoredOne': True, 'ignoredTwo': '?'}`</code></td><td></td></tr>
-</table>
-
-<h1>statefulset</h1>
-<table style="">
-    <tr>
-        <th>Key</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Description</th>
-    </tr>
-<tr style="" ><td>
-
-[statefulset](./values.yaml#L1)
-
-</td><td>dict</td><td><code>`{'image': {'repository': 'jnorwood/postgresq', 'tag': '11'}, 'extraVolumes': [{'name': 'data', 'emptyDir': {}}], 'livenessProbe': {'enabled': False}, 'podLabels': {}}`</code></td><td></td></tr><tr style="" ><td>
-
-[statefulset.image](./values.yaml#L2)
-
-</td><td>dict</td><td><code>`{'repository': 'jnorwood/postgresq', 'tag': '11'}`</code></td><td></td></tr><tr style="" ><td>
-
-[statefulset.image.repository](./values.yaml#L5)
-
-</td><td>str</td><td><code>`jnorwood/postgresq`</code></td><td><p><code> Image to use for deploying, must support an entrypoint</code></p></td></tr><tr style="" ><td>
-
-[statefulset.image.tag](./values.yaml#L6)
-
-</td><td>str</td><td><code>`11`</code></td><td></td></tr><tr style="" ><td>
-
-[statefulset.extraVolumes](./values.yaml#L9)
-
-</td><td>list</td><td><code>`[{'name': 'data', 'emptyDir': {}}]`</code></td><td><p><code> Additional volumes to be mounted into the database container</code></p></td></tr><tr style="" ><td>
-
-[statefulset.extraVolumes[0]](./values.yaml#L9)
-
-</td><td>dict</td><td><code>`{'name': 'data', 'emptyDir': {}}`</code></td><td></td></tr><tr style="" ><td>
-
-[statefulset.livenessProbe](./values.yaml#L14)
-
-</td><td>dict</td><td><code>`{'enabled': False}`</code></td><td><p><code> Configure the healthcheck for the database</code></p></td></tr><tr style="" ><td>
-
-[statefulset.livenessProbe.enabled](./values.yaml#L15)
-
-</td><td>bool</td><td><code>`False`</code></td><td></td></tr><tr style="" ><td>
-
-[statefulset.podLabels](./values.yaml#L18)
-
-</td><td>dict</td><td><code>`{}`</code></td><td><p><code> The labels to be applied to instances of the database</code></p></td></tr>
 </table>
 
 
