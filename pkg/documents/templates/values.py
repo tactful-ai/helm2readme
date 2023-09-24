@@ -13,7 +13,7 @@ def get_chart_values_header():
     return values_header_markdown
 
 
-def get_chart_values_table(chart_folder, ignore_none_description, values_path):
+def get_chart_values_table(chart_folder, ignore_none_description, values_path, sort_values_order):
     """
     Generates markdown tables for the 'Values' section of the chart.
 
@@ -26,11 +26,11 @@ def get_chart_values_table(chart_folder, ignore_none_description, values_path):
 
     values_path = os.path.join(chart_folder, values_path)  # Construct the full path to the values.yaml file
     values_tables = read_and_print_values(values_path,
-                                          ignore_none_description)  # Read and print the values from the values.yaml file
+                                          ignore_none_description, sort_values_order)  # Read and print the values from the values.yaml file
     return values_tables
 
 
-def get_chart_values_section(chart_folder, ignore_none_description, values_path):
+def get_chart_values_section(chart_folder, ignore_none_description, values_path, sort_values_order):
     """
     Generates the complete markdown section for the 'Values' section of the chart.
 
@@ -43,5 +43,5 @@ def get_chart_values_section(chart_folder, ignore_none_description, values_path)
         :param values_path:
         :param ignore_none_description:
     """
-    values_section_markdown = f"{get_chart_values_header()}\n\n" + get_chart_values_table(chart_folder, ignore_none_description, values_path)
+    values_section_markdown = f"{get_chart_values_header()}\n\n" + get_chart_values_table(chart_folder, ignore_none_description, values_path, sort_values_order)
     return values_section_markdown

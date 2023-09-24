@@ -391,6 +391,15 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     # Split and merge tables based on transfer map
     final_tables = split_and_merge_tables(values_table, transfers_map)
 
+
+
+    for table in final_tables:
+        if table['title'] == 'global':
+            tables = table['value']
+            final_tables.remove(table)
+            final_tables = tables + final_tables
+
+
     markdown_content = ""
     # Convert each merged table to markdown content
     for table in final_tables:
@@ -399,7 +408,7 @@ def generate_markdown_output(entries, key_to_comment_map, transfers_map, custom_
     return markdown_content
 
 
-def read_and_print_values(values_path, ignore_none_description, sort='AlphaNum'):
+def read_and_print_values(values_path, ignore_none_description, sort='File'):
     """
     Reads values from a YAML file, processes them, and generates markdown content for printing.
 
