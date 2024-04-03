@@ -91,7 +91,10 @@ jobs:
           twine upload --verbose -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*
 
   build_binary:
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ["windows-latest", "ubuntu-latest", "macos-latest"]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
@@ -106,7 +109,7 @@ jobs:
       - name: build the binary using pyinstaller
         run: |
           pip uninstall -y typing
-          pyinstaller --onefile main.py --name doxy-helm
+          pyinstaller --onefile main.py --name helm2readme
 
       - name: create a tag for the release
         uses: actions/github-script@v7
@@ -115,13 +118,13 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/v${{ github.sha }}',
+              ref: 'refs/tags/v-${{ matrix.os }}-${{ github.sha }}',
               sha: context.sha
             })
       - name: publish the binary in a release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/doxy-helm.exe
-          name: "Release ${{ github.run_number}}"
-          tag_name: v${{ github.sha }}     
+          files: dist/helm2readme*
+          name: "Release ${{ github.run_number  }} ${{ matrix.os }}"
+          tag_name: v-${{ matrix.os }}-${{ github.sha }}     
           target_commitish: release
