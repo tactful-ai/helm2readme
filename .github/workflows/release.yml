@@ -64,7 +64,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/doxy-helm:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/helm2readme:latest
 
   publish-package:
     needs: build
@@ -124,7 +124,9 @@ jobs:
       - name: publish the binary in a release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/helm2readme*
+          files: |
+            dist/helm2readme.exe
+            dist/helm2readme
           name: "Release ${{ github.run_number  }} ${{ matrix.os }}"
           tag_name: v-${{ matrix.os }}-${{ github.sha }}     
           target_commitish: release
