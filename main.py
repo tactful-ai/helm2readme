@@ -1,5 +1,5 @@
 import os.path
-
+import sys
 from pkg.documents.templates.chart_data import get_chart_data
 from pkg.documents.templates.replacement import replace_template_parts
 from pkg.documents.templates.requirement_data import get_requirements_data
@@ -67,4 +67,5 @@ def main():
 
 if __name__ == "__main__":
     print("HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLOOOOO")
+    print('-----------'.join(sys.argv))
     main()
