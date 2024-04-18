@@ -113,6 +113,22 @@ helm2readme --dry-run # prints generated documentation to stdout rather than mod
 
 The tool searches recursively through subdirectories of the current directory for `Chart.yaml` files and generates documentation for every chart that it finds.
 
+### Downloading and installing a binary in a single command
+
+It's sometimes necessary to fetch a binary, run it, and remove it in the same command. This would be the case for example if you want to run helm2readme in a clean AWS machine or in Github actions. The following commands will do this:
+
+#### for Linux and MacOS
+```bash
+wget <binary-url> && chmod +x helm2readme && ./helm2readme <args> && rm helm2readme
+```
+
+#### for Windows with Powershell
+```powershell
+Invoke-WebRequest -Uri <binary-url> -Out helm2readme.exe;
+Start-Process -FilePath ./helm2readme.exe -ArgumentList arg1,arg2,...,argn; 
+Remove-Item helm2readme.exe
+```
+Where <binary-url> can be obtained by choosing a suitable binary in the releases section of this github and right-clicking then choosing "copy link" or "copy link address". It's a URL that starts with "https://github.com/tactful-ai/helm2readme/releases/download/" and ends with "helm2readme" or "helm2readme.exe" for windows. arg1,arg2,arg3 is how you pass parameters to the binary as you're starting it with Start-Process on windows, where switches are seperate arguments (e.g. -c, helmfolder; is how you point the binary to helmfolder as the chart search root).
 
 ## Ignoring Chart Directories
 The helm2readme tool supports a .helmdocsignore file, similar to a .gitignore file, where you can specify directories to be excluded from the chart search process. This feature allows you to ignore directories that might contain multiple charts or unrelated files, ensuring that only the desired charts are processed. You can also directly reference the Chart.yaml file for a specific chart to prevent it from being processed.
