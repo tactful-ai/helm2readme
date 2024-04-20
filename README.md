@@ -1,11 +1,11 @@
-doxy-helm
+helm2readme
 =========
 
-The doxy-helm tool auto-generates documentation from helm charts into markdown files. The resulting files contain metadata about their respective chart and a table with each of the chart's values, their defaults, and an optional description parsed from comments.
+The helm2readme tool auto-generates documentation from helm charts into 'README' markdown files. The resulting files contain metadata about their respective chart and a table with each of the chart's values, their defaults, and an optional description parsed from comments.
 
 
-The markdown generation is entirely [gotemplate](https://golang.org/pkg/text/template)(Currently) driven. The tool parses metadata from charts and generates a number of sub-templates that can be referenced in a template file (by default `README.md.gotmpl`).
-If no template file is provided, the tool has a default internal template that will generate a reasonably formatted README.
+The markdown generation is entirely [gotemplate](https://golang.org/pkg/text/template)-driven (currently). helm2readme parses metadata from charts and generates a number of sub-templates that can be referenced in a template file (by default `README.md.gotmpl`).
+If no template file is provided, helm2readme has a default internal template that will generate a reasonably formatted README.
 
 ## Features
 
@@ -76,27 +76,29 @@ You may observe that certain intricate fields (lists and dictionaries) are docum
 
 
 ## Installation
-doxy-helm can be installed using [pip](https://pypi.org/project/pip/):
+helm2readme can be installed using [pip](https://pypi.org/project/pip/):
 
 ```bash
-pip install doxy-helm
+pip install helm2readme
 ```
 
 To build from source in this repository:
 
 ```bash
-git clone https://github.com/tactful-ai/doxy-helm
-cd doxy-helm
+git clone https://github.com/tactful-ai/helm2readme
+cd helm2readme
 python setup.py sdist bdist_wheel
 pip install .
 ```
+
+In addition to installing it as a Python package from PyPI, helm2readme also comes as a static 0-dependency self-contained executable and as a docker image. The executables for all 3 operating systems is in the [releases section](https://github.com/tactful-ai/helm2readme/releases/) and the docker image's tag is helm2readme:latest.
 
 ## Usage
 
 ### Using Docker
 
 ```bash
-docker run --rm -v ./Helm-files-location:/app  waer/doxy-helm:latest
+docker run --rm -v ./Helm-files-location:/app  waer/helm2readme:latest
 ```
 
 ### Running the binary directly
@@ -104,22 +106,38 @@ docker run --rm -v ./Helm-files-location:/app  waer/doxy-helm:latest
 To run and generate documentation into READMEs for all helm charts within or recursively contained by a directory:
 
 ```bash
-doxy
+helm2readme
 # OR
-doxy --dry-run # prints generated documentation to stdout rather than modifying READMEs
+helm2readme --dry-run # prints generated documentation to stdout rather than modifying READMEs
 ```
 
 The tool searches recursively through subdirectories of the current directory for `Chart.yaml` files and generates documentation for every chart that it finds.
 
+### Downloading and installing a binary in a single command
+
+It's sometimes necessary to fetch a binary, run it, and remove it in the same command. This would be the case for example if you want to run helm2readme in a clean AWS machine or in Github actions. The following commands will do this:
+
+#### for Linux and MacOS
+```bash
+wget <binary-url> && chmod +x helm2readme && ./helm2readme <args> && rm helm2readme
+```
+
+#### for Windows with Powershell
+```powershell
+Invoke-WebRequest -Uri <binary-url> -Out helm2readme.exe;
+Start-Process -FilePath ./helm2readme.exe -ArgumentList arg1,arg2,...,argn; 
+Remove-Item helm2readme.exe
+```
+Where the binary url can be obtained by choosing a suitable binary in the releases section of this github and right-clicking then choosing "copy link" or "copy link address". It's a URL that starts with "https://github.com/tactful-ai/helm2readme/releases/download/" and ends with "helm2readme" or "helm2readme.exe" for windows. arg1,arg2,arg3 is how you pass parameters to the binary as you're starting it with Start-Process on windows, where switches are seperate arguments (e.g. -c, helmfolder; is how you point the binary to helmfolder as the chart search root).
 
 ## Ignoring Chart Directories
-The doxy-helm tool supports a .helmdocsignore file, similar to a .gitignore file, where you can specify directories to be excluded from the chart search process. This feature allows you to ignore directories that might contain multiple charts or unrelated files, ensuring that only the desired charts are processed. You can also directly reference the Chart.yaml file for a specific chart to prevent it from being processed.
+The helm2readme tool supports a .helmdocsignore file, similar to a .gitignore file, where you can specify directories to be excluded from the chart search process. This feature allows you to ignore directories that might contain multiple charts or unrelated files, ensuring that only the desired charts are processed. You can also directly reference the Chart.yaml file for a specific chart to prevent it from being processed.
 
 By using the .helmdocsignore file, you have the flexibility to tailor the chart search process to your project's structure and requirements. This is particularly useful when you want to focus on specific charts and exclude others that are not relevant for documentation generation.
 
 
 ## Markdown Rendering
-When utilizing the doxy-helm tool, it's crucial to be mindful of two essential parameters. The first parameter, --chart-search-root, designates the root directory from which the tool will conduct a recursive search for charts to generate documentation for. The second parameter, --template-files, specifies a list of gotemplate files that should be employed in crafting the resulting markdown file for each discovered chart. By default, the values for these parameters are --chart-search-root=. and --template-files=README.md.gotmpl.
+When utilizing the helm2readme tool, it's crucial to be mindful of two essential parameters. The first parameter, --chart-search-root, designates the root directory from which the tool will conduct a recursive search for charts to generate documentation for. The second parameter, --template-files, specifies a list of gotemplate files that should be employed in crafting the resulting markdown file for each discovered chart. By default, the values for these parameters are --chart-search-root=. and --template-files=README.md.gotmpl.
 
 Should you provide a template file using just its filename, this indicates that the file should be interpreted as being relative to each individual chart directory found. Conversely, if a template file is provided as a relative path, such as in the form of --template-files=./_templates.gotmpl --template-files=README.md.gotmpl, then it is interpreted as being relative to the chart-search-root. This level of flexibility enables you to adapt the template usage according to the specific location and structure of your chart directories.
 

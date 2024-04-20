@@ -3,9 +3,9 @@ import argparse
 
 def parse_command_line_args():
     parser = argparse.ArgumentParser(
-        prog="doxy-helm",
+        prog="helm2readme",
         description="Helm Docs Command Line Tool",
-        epilog="For more information, visit https://github.com/tactful-ai/doxy-helm",
+        epilog="For more information, visit https://github.com/tactful-ai/helm2readme",
     )
 
     parser.add_argument("-td", "--table-depth", default=1, type=int, help="Depth of separate tables to generate")
